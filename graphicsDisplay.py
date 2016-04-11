@@ -195,8 +195,8 @@ class PacmanGraphics:
     def drawStaticObjects(self, state):
         layout = self.layout
         self.drawWalls(layout.walls)
-        self.food = self.drawFood(layout.food)
-        self.capsules = self.drawCapsules(layout.capsules)
+        self.destinations = self.drawFood(layout.destinations)
+        self.sources = self.drawCapsules(layout.sources)
         refresh()
 
     def drawAgentObjects(self, state):
@@ -237,9 +237,9 @@ class PacmanGraphics:
         self.agentImages[agentIndex] = (agentState, prevImage)
 
         if newState._foodEaten != None:
-            self.removeFood(newState._foodEaten, self.food)
+            self.removeFood(newState._foodEaten, self.destinations)
         if newState._capsuleEaten != None:
-            self.removeCapsule(newState._capsuleEaten, self.capsules)
+            self.removeCapsule(newState._capsuleEaten, self.sources)
         self.infoPane.updateScore(newState.score)
         if 'ghostDistances' in dir(newState):
             self.infoPane.updateGhostDistances(newState.ghostDistances)

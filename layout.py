@@ -22,8 +22,8 @@ class Layout:
         self.width = len(layoutText[0])
         self.height= len(layoutText)
         self.walls = Grid(self.width, self.height, False)
-        self.food = Grid(self.width, self.height, False)
-        self.capsules = []
+        self.destinations = Grid(self.width, self.height, False)
+        self.sources = []
         self.agentPositions = []
         self.numGhosts = 0
         self.processLayoutText(layoutText)
@@ -92,7 +92,7 @@ class Layout:
         The shape of the maze.  Each character
         represents a different type of object.
          % - Wall
-         . - Food
+         . - Destinations
          o - Capsule
          G - Ghost
          P - Pacman
@@ -110,9 +110,9 @@ class Layout:
         if layoutChar == '%':
             self.walls[x][y] = True
         elif layoutChar == '.':
-            self.food[x][y] = True
+            self.destinations[x][y] = True
         elif layoutChar == 'o':
-            self.capsules.append((x, y))
+            self.sources.append((x, y))
         elif layoutChar == 'P':
             self.agentPositions.append( (0, (x, y) ) )
         elif layoutChar in ['G']:

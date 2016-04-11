@@ -148,7 +148,7 @@ class PositionSearchProblem(search.SearchProblem):
         if start != None: self.startState = start
         self.goal = goal
         self.costFn = costFn
-        if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
+        if warn and (gameState.getNumDestionations() != 1 or not gameState.hasDestination(*goal)):
             print 'Warning: this does not look like a regular search maze'
 
         # For display purposes

@@ -159,16 +159,16 @@ class GameState:
     def getScore( self ):
         return self.data.score
 
-    def getCapsules(self):
+    def getSources(self):
         """
         Returns a list of positions (x,y) of the remaining capsules.
         """
-        return self.data.capsules
+        return self.data.sources
 
-    def getNumFood( self ):
-        return self.data.food.count()
+    def getNumDestionations( self ):
+        return self.data.destinations.count()
 
-    def getFood(self):
+    def getDestinations(self):
         """
         Returns a Grid of boolean food indicator variables.
 
@@ -178,7 +178,7 @@ class GameState:
         currentFood = state.getFood()
         if currentFood[x][y] == True: ...
         """
-        return self.data.food
+        return self.data.destinations
 
     def getWalls(self):
         """
@@ -192,8 +192,8 @@ class GameState:
         """
         return self.data.layout.walls
 
-    def hasFood(self, x, y):
-        return self.data.food[x][y]
+    def hasDestination(self, x, y):
+        return self.data.destinations[x][y]
 
     def hasWall(self, x, y):
         return self.data.layout.walls[x][y]
@@ -351,10 +351,10 @@ class PacmanRules:
     def consume( position, state ):
         x,y = position
         # Eat food
-        if state.data.food[x][y]:
+        if state.data.destinations[x][y]:
             state.data.scoreChange += 10
-            state.data.food = state.data.food.copy()
-            state.data.food[x][y] = False
+            state.data.destinations = state.data.destinations.copy()
+            state.data.destinations[x][y] = False
             state.data._foodEaten = position
             # TODO: cache numFood?
             numFood = state.getNumFood()
@@ -362,8 +362,8 @@ class PacmanRules:
                 state.data.scoreChange += 500
                 state.data._win = True
         # Eat capsule
-        if( position in state.getCapsules() ):
-            state.data.capsules.remove( position )
+        if( position in state.getSources() ):
+            state.data.sources.remove( position )
             state.data._capsuleEaten = position
             # Reset all ghosts' scared timers
             for index in range( 1, len( state.data.agentStates ) ):

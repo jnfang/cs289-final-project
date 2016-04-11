@@ -358,8 +358,8 @@ class GameStateData:
         Generates a new data packet by copying information from its predecessor.
         """
         if prevState != None:
-            self.food = prevState.food.shallowCopy()
-            self.capsules = prevState.capsules[:]
+            self.destinations = prevState.destinations.shallowCopy()
+            self.sources = prevState.sources[:]
             self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
             self._eaten = prevState._eaten
@@ -373,7 +373,7 @@ class GameStateData:
 
     def deepCopy( self ):
         state = GameStateData( self )
-        state.food = self.food.deepCopy()
+        state.destinations = self.destinations.deepCopy()
         state.layout = self.layout.deepCopy()
         state._agentMoved = self._agentMoved
         state._foodEaten = self._foodEaten
@@ -393,8 +393,8 @@ class GameStateData:
         if other == None: return False
         # TODO Check for type of other
         if not self.agentStates == other.agentStates: return False
-        if not self.food == other.food: return False
-        if not self.capsules == other.capsules: return False
+        if not self.destinations == other.destinations: return False
+        if not self.sources == other.sources: return False
         if not self.score == other.score: return False
         return True
 
@@ -408,17 +408,17 @@ class GameStateData:
             except TypeError, e:
                 print e
                 #hash(state)
-        return int((hash(tuple(self.agentStates)) + 13*hash(self.food) + 113* hash(tuple(self.capsules)) + 7 * hash(self.score)) % 1048575 )
+        return int((hash(tuple(self.agentStates)) + 13*hash(self.destinations) + 113* hash(tuple(self.sources)) + 7 * hash(self.score)) % 1048575 )
 
     def __str__( self ):
         width, height = self.layout.width, self.layout.height
         map = Grid(width, height)
-        if type(self.food) == type((1,2)):
-            self.food = reconstituteGrid(self.food)
+        if type(self.destinations) == type((1,2)):
+            self.destinations = reconstituteGrid(self.destinations)
         for x in range(width):
             for y in range(height):
-                food, walls = self.food, self.layout.walls
-                map[x][y] = self._foodWallStr(food[x][y], walls[x][y])
+                destinations, walls = self.destinations, self.layout.walls
+                map[x][y] = self._foodWallStr(destinations[x][y], walls[x][y])
 
         for agentState in self.agentStates:
             if agentState == None: continue
@@ -430,7 +430,7 @@ class GameStateData:
             else:
                 map[x][y] = self._ghostStr( agent_dir )
 
-        for x, y in self.capsules:
+        for x, y in self.sources:
             map[x][y] = 'o'
 
         return str(map) + ("\nScore: %d\n" % self.score)
@@ -466,8 +466,8 @@ class GameStateData:
         """
         Creates an initial game state from a layout array (see layout.py).
         """
-        self.food = layout.food.copy()
-        self.capsules = layout.capsules[:]
+        self.destinations = layout.destinations.copy()
+        self.sources = layout.sources[:]
         self.layout = layout
         self.score = 0
         self.scoreChange = 0
