@@ -1,10 +1,16 @@
 # layout.py
 # ---------
-# Licensing Information: Please do not distribute or publish solutions to this
-# project. You are free to use and extend these projects for educational
-# purposes. The Pacman AI projects were developed at UC Berkeley, primarily by
-# John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
-# For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
+# Licensing Information:  You are free to use or extend these projects for
+# educational purposes provided that (1) you do not distribute or publish
+# solutions, (2) you retain this notice, and (3) you provide clear
+# attribution to UC Berkeley, including a link to http://ai.berkeley.edu.
+# 
+# Attribution Information: The Pacman AI projects were developed at UC Berkeley.
+# The core projects and autograders were primarily created by John DeNero
+# (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
+# Student side autograding was added by Brad Miller, Nick Hay, and
+# Pieter Abbeel (pabbeel@cs.berkeley.edu).
+
 
 from util import manhattanDistance
 from game import Grid
@@ -22,16 +28,21 @@ class Layout:
         self.width = len(layoutText[0])
         self.height= len(layoutText)
         self.walls = Grid(self.width, self.height, False)
-        self.destinations = Grid(self.width, self.height, False)
-        self.sources = []
+        self.food = Grid(self.width, self.height, False)
+        self.capsules = []
         self.agentPositions = []
         self.numGhosts = 0
+        self.numPacman = 0
         self.processLayoutText(layoutText)
         self.layoutText = layoutText
+        self.totalFood = len(self.food.asList())
         # self.initializeVisibilityMatrix()
 
     def getNumGhosts(self):
         return self.numGhosts
+
+    def getNumPacman(self): 
+        return self.numPacman
 
     def initializeVisibilityMatrix(self):
         global VISIBILITY_MATRIX_CACHE
@@ -92,7 +103,7 @@ class Layout:
         The shape of the maze.  Each character
         represents a different type of object.
          % - Wall
-         . - Destinations
+         . - Food
          o - Capsule
          G - Ghost
          P - Pacman
@@ -110,9 +121,9 @@ class Layout:
         if layoutChar == '%':
             self.walls[x][y] = True
         elif layoutChar == '.':
-            self.destinations[x][y] = True
+            self.food[x][y] = True
         elif layoutChar == 'o':
-            self.sources.append((x, y))
+            self.capsules.append((x, y))
         elif layoutChar == 'P':
             self.agentPositions.append( (0, (x, y) ) )
         elif layoutChar in ['G']:
@@ -121,6 +132,7 @@ class Layout:
         elif layoutChar in  ['1', '2', '3', '4']:
             self.agentPositions.append( (int(layoutChar), (x,y)))
             self.numGhosts += 1
+            
 def getLayout(name, back = 2):
     if name.endswith('.lay'):
         layout = tryToLoad('layouts/' + name)
