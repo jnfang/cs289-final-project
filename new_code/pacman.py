@@ -164,6 +164,7 @@ class GameState:
         return [s.getPosition() for s in self.getGhostStates()]
 
     def getNumAgents( self ):
+        # print len( self.data.agentStates )
         return len( self.data.agentStates )
 
     def getScore( self ):
@@ -327,7 +328,7 @@ class PacmanRules:
     These functions govern how pacman interacts with his environment under
     the classic game rules.
     """
-    PACMAN_SPEED=1
+    PACMAN_SPEED= 0
 
     def getLegalActions( state ):
         """
@@ -436,16 +437,17 @@ class GhostRules:
     checkDeath = staticmethod( checkDeath )
 
     def collide( state, ghostState, agentIndex):
-        if ghostState.scaredTimer > 0:
-            state.data.scoreChange += 200
-            GhostRules.placeGhost(state, ghostState)
-            ghostState.scaredTimer = 0
-            # Added for first-person
-            state.data._eaten[agentIndex] = True
-        else:
-            if not state.data._win:
-                state.data.scoreChange -= 500
-                state.data._lose = True
+        # if ghostState.scaredTimer > 0:
+        #     state.data.scoreChange += 200
+        #     GhostRules.placeGhost(state, ghostState)
+        #     ghostState.scaredTimer = 0
+        #     # Added for first-person
+        #     state.data._eaten[agentIndex] = True
+        # else:
+        #     if not state.data._win:
+        #         state.data.scoreChange -= 500
+        #         state.data._lose = True
+        pass
     collide = staticmethod( collide )
 
     def canKill( pacmanPosition, ghostPosition ):
@@ -613,7 +615,7 @@ def replayGame( layout, actions, display ):
     import pacmanAgents, ghostAgents
     rules = ClassicGameRules()
     agents = [pacmanAgents.GreedyAgent()] + [ghostAgents.RandomGhost(i+1) for i in range(layout.getNumGhosts())]
-    game = rules.newGame( layout, agents[0], agents[1:], display )
+    game = rules.newGame( layout, agents[0], agents, display )
     state = game.state
     display.initialize(state.data)
 
@@ -644,6 +646,8 @@ def runGames( layout, pacman, ghosts, display, numGames, record, numTraining = 0
         else:
             gameDisplay = display
             rules.quiet = False
+
+        print "GHOSTS", ghosts, len(ghosts)
         game = rules.newGame( layout, pacman, ghosts, gameDisplay, beQuiet, catchExceptions)
         game.run()
         if not beQuiet: games.append(game)

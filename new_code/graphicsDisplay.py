@@ -29,8 +29,8 @@ BACKGROUND_COLOR = formatColor(0,0,0)
 WALL_COLOR = formatColor(0.0/255.0, 51.0/255.0, 255.0/255.0)
 INFO_PANE_COLOR = formatColor(.4,.4,0)
 SCORE_COLOR = formatColor(.9, .9, .9)
-PACMAN_OUTLINE_WIDTH = 2
-PACMAN_CAPTURE_OUTLINE_WIDTH = 4
+PACMAN_OUTLINE_WIDTH = 0
+PACMAN_CAPTURE_OUTLINE_WIDTH = 0
 
 GHOST_COLORS = []
 GHOST_COLORS.append(formatColor(.9,0,0)) # Red
@@ -61,7 +61,7 @@ SCARED_COLOR = formatColor(1,1,1)
 GHOST_VEC_COLORS = map(colorToVector, GHOST_COLORS)
 
 PACMAN_COLOR = formatColor(255.0/255.0,255.0/255.0,61.0/255)
-PACMAN_SCALE = 0.5
+PACMAN_SCALE = 0.0
 #pacman_speed = 0.25
 
 # Food
@@ -265,23 +265,24 @@ class PacmanGraphics:
                        "CS188 Pacman")
 
     def drawPacman(self, pacman, index):
-        position = self.getPosition(pacman)
-        screen_point = self.to_screen(position)
-        endpoints = self.getEndpoints(self.getDirection(pacman))
+        # position = self.getPosition(pacman)
+        # screen_point = self.to_screen(position)
+        # endpoints = self.getEndpoints(self.getDirection(pacman))
 
-        width = PACMAN_OUTLINE_WIDTH
-        outlineColor = PACMAN_COLOR
-        fillColor = PACMAN_COLOR
+        # width = PACMAN_OUTLINE_WIDTH
+        # outlineColor = PACMAN_COLOR
+        # fillColor = PACMAN_COLOR
 
-        if self.capture:
-            outlineColor = TEAM_COLORS[index % 2]
-            fillColor = GHOST_COLORS[index]
-            width = PACMAN_CAPTURE_OUTLINE_WIDTH
+        # if self.capture:
+        #     outlineColor = TEAM_COLORS[index % 2]
+        #     fillColor = GHOST_COLORS[index]
+        #     width = PACMAN_CAPTURE_OUTLINE_WIDTH
 
-        return [circle(screen_point, PACMAN_SCALE * self.gridSize,
-                       fillColor = fillColor, outlineColor = outlineColor,
-                       endpoints = endpoints,
-                       width = width)]
+        # return [circle(screen_point, PACMAN_SCALE * self.gridSize,
+        #                fillColor = fillColor, outlineColor = outlineColor,
+        #                endpoints = endpoints,
+        #                width = width)]
+        pass
 
     def getEndpoints(self, direction, position=(0,0)):
         x, y = position
@@ -300,31 +301,33 @@ class PacmanGraphics:
         return endpoints
 
     def movePacman(self, position, direction, image):
-        screenPosition = self.to_screen(position)
-        endpoints = self.getEndpoints( direction, position )
-        r = PACMAN_SCALE * self.gridSize
-        moveCircle(image[0], screenPosition, r, endpoints)
-        refresh()
+        # screenPosition = self.to_screen(position)
+        # endpoints = self.getEndpoints( direction, position )
+        # r = PACMAN_SCALE * self.gridSize
+        # moveCircle(image[0], screenPosition, r, endpoints)
+        # refresh()
+        pass
 
     def animatePacman(self, pacman, prevPacman, image):
-        if self.frameTime < 0:
-            print 'Press any key to step forward, "q" to play'
-            keys = wait_for_keys()
-            if 'q' in keys:
-                self.frameTime = 0.1
-        if self.frameTime > 0.01 or self.frameTime < 0:
-            start = time.time()
-            fx, fy = self.getPosition(prevPacman)
-            px, py = self.getPosition(pacman)
-            frames = 4.0
-            for i in range(1,int(frames) + 1):
-                pos = px*i/frames + fx*(frames-i)/frames, py*i/frames + fy*(frames-i)/frames
-                self.movePacman(pos, self.getDirection(pacman), image)
-                refresh()
-                sleep(abs(self.frameTime) / frames)
-        else:
-            self.movePacman(self.getPosition(pacman), self.getDirection(pacman), image)
-        refresh()
+        # if self.frameTime < 0:
+        #     print 'Press any key to step forward, "q" to play'
+        #     keys = wait_for_keys()
+        #     if 'q' in keys:
+        #         self.frameTime = 0.1
+        # if self.frameTime > 0.01 or self.frameTime < 0:
+        #     start = time.time()
+        #     fx, fy = self.getPosition(prevPacman)
+        #     px, py = self.getPosition(pacman)
+        #     frames = 4.0
+        #     for i in range(1,int(frames) + 1):
+        #         pos = px*i/frames + fx*(frames-i)/frames, py*i/frames + fy*(frames-i)/frames
+        #         self.movePacman(pos, self.getDirection(pacman), image)
+        #         refresh()
+        #         sleep(abs(self.frameTime) / frames)
+        # else:
+        #     self.movePacman(self.getPosition(pacman), self.getDirection(pacman), image)
+        # refresh()
+        pass
 
     def getGhostColor(self, ghost, ghostIndex):
         if ghost.scaredTimer > 0:
