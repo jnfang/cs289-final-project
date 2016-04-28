@@ -67,6 +67,18 @@ class Directions:
                WEST: EAST,
                STOP: STOP}
 
+class Package:
+    def __init__(self, location, priority):
+        self.location = location
+        self.priority = priority
+
+    def getDestination(self):
+        return self.location
+
+    def getPriority(self):
+        return self.priority
+
+
 class Configuration:
     """
     A Configuration holds the (x,y) coordinate of a character, along with its
@@ -178,6 +190,7 @@ class Grid:
             self._unpackBits(bitRepresentation)
 
     def __getitem__(self, i):
+        # print self.data[i]
         return self.data[i]
 
     def __setitem__(self, key, item):

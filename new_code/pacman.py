@@ -403,8 +403,8 @@ class GhostRules:
     def applyAction( state, action, ghostIndex):
 
         legal = GhostRules.getLegalActions( state, ghostIndex )
-        if action not in legal:
-            raise Exception("Illegal ghost action " + str(action))
+        # if action not in legal:
+            # raise Exception("Illegal ghost action " + str(action))
 
         ghostState = state.data.agentStates[ghostIndex]
         speed = GhostRules.GHOST_SPEED
