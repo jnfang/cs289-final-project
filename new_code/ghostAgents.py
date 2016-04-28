@@ -22,6 +22,7 @@ import util
 class GhostAgent( Agent ):
     def __init__( self, index ):
         self.index = index
+        self.package = None # tuple of priority and destination (from priority queue)
 
     def getAction( self, state ):
         dist = self.getDistribution(state)
@@ -34,12 +35,22 @@ class GhostAgent( Agent ):
         "Returns a Counter encoding a distribution over actions from the provided state."
         util.raiseNotDefined()
 
+class DeterministicGhost(GhostAgent):
+    def getDistribution(self, state):
+        dist = util.Counter()
+        dist[state.getLegalActions( self.index )[0]] = 1.0
+        dist.normalize()
+        print dist
+        return dist
+
+
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."
     def getDistribution( self, state ):
         dist = util.Counter()
         for a in state.getLegalActions( self.index ): dist[a] = 1.0
         dist.normalize()
+        print dist
         return dist
 
 class DirectionalGhost( GhostAgent ):

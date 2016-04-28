@@ -13,6 +13,7 @@
 
 
 from util import manhattanDistance
+from util import PriorityQueue
 from game import Grid
 import os
 import random
@@ -29,10 +30,11 @@ class Layout:
         self.height= len(layoutText)
         self.walls = Grid(self.width, self.height, False)
         self.food = Grid(self.width, self.height, False)
-        self.capsules = []
+        self.p_queue = PriorityQueue() # priority queue 
+        self.source_loc = [] #global locations
+        self.capsules = [] #may use this as source locations
         self.agentPositions = []
         self.numGhosts = 0
-        self.numPacman = 0
         self.processLayoutText(layoutText)
         self.layoutText = layoutText
         self.totalFood = len(self.food.asList())
@@ -40,9 +42,6 @@ class Layout:
 
     def getNumGhosts(self):
         return self.numGhosts
-
-    def getNumPacman(self): 
-        return self.numPacman
 
     def initializeVisibilityMatrix(self):
         global VISIBILITY_MATRIX_CACHE
