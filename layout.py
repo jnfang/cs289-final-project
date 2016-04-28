@@ -125,7 +125,8 @@ class Layout:
         elif layoutChar == 'o':
             self.capsules.append((x, y))
         elif layoutChar == 'P':
-            self.agentPositions.append( (0, (x, y) ) )
+            self.agentPositions.append( (1, (x, y) ) )
+            self.numPacman += 1
         elif layoutChar in ['G']:
             self.agentPositions.append( (1, (x, y) ) )
             self.numGhosts += 1
