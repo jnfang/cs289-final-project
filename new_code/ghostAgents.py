@@ -11,10 +11,12 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
-
+from searchAgents import SearchAgent
+from searchAgents import PositionSearchProblem
 from game import Agent
 from game import Actions
 from game import Directions
+from game import Package
 import random
 from util import manhattanDistance
 import util
@@ -22,7 +24,6 @@ import util
 class GhostAgent( Agent ):
     def __init__( self, index ):
         self.index = index
-        self.package = None # tuple of priority and destination (from priority queue)
 
     def getAction( self, state ):
         dist = self.getDistribution(state)
@@ -35,22 +36,27 @@ class GhostAgent( Agent ):
         "Returns a Counter encoding a distribution over actions from the provided state."
         util.raiseNotDefined()
 
-class DeterministicGhost(GhostAgent):
+class DirectedGhost(GhostAgent, SearchAgent):
+    def __init__(self, index):
+        SearchAgent.__init__(self, fn='uniformCostSearch') 
+        GhostAgent.__init__(self, 1)
+        # self.package = None # tuple of priority and destination (from priority queue)
+        self.origin = None
+        self.package = Package((13,5), 1)
+
     def getDistribution(self, state):
         dist = util.Counter()
-        dist[state.getLegalActions( self.index )[0]] = 1.0
+        next_action = SearchAgent.getAction(self, state)
+        dist[next_action] = 1.0
         dist.normalize()
-        print dist
         return dist
-
-
+    
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."
     def getDistribution( self, state ):
         dist = util.Counter()
         for a in state.getLegalActions( self.index ): dist[a] = 1.0
         dist.normalize()
-        print dist
         return dist
 
 class DirectionalGhost( GhostAgent ):
