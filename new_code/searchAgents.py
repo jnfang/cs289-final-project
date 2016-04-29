@@ -102,7 +102,7 @@ class SearchAgent(Agent):
         """
         if self.searchFunction == None: raise Exception, "No search function provided for SearchAgent"
         starttime = time.time()
-        problem = self.searchType(state) # Makes a new search problem
+        problem = self.searchType(state, index=self.index) # Makes a new search problem
         try:
             problem.goal = self.package.getDestination() 
         except AttributeError:
@@ -138,7 +138,7 @@ class PositionSearchProblem(search.SearchProblem):
     Note: this search problem is fully specified; you should NOT change it.
     """
 
-    def __init__(self, gameState, costFn = lambda x: 1, goal=(1,1), start=None, warn=True):
+    def __init__(self, gameState, costFn = lambda x: 1, goal=(1,1), start=None, warn=True, index=1):
         """
         Stores the start and goal.
 
@@ -147,7 +147,7 @@ class PositionSearchProblem(search.SearchProblem):
         goal: A position in the gameState
         """
         self.walls = gameState.getWalls()
-        self.startState = gameState.getGhostPosition(1)
+        self.startState = gameState.getGhostPosition(index)
         if start != None: self.startState = start
         self.goal = goal
         self.costFn = costFn

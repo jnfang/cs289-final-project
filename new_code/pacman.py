@@ -278,6 +278,7 @@ class ClassicGameRules:
         agents = [pacmanAgent] + ghostAgents[:layout.getNumGhosts()]
         initState = GameState()
         initState.initialize( layout, len(ghostAgents) )
+        print ghostAgents
         game = Game(agents, display, self, catchExceptions=catchExceptions)
         game.state = initState
         self.initialState = initState.deepCopy()
@@ -557,6 +558,8 @@ def readCommand( argv ):
 
     # Choose a ghost agent
     ghostType = loadAgent(options.ghost, noKeyboard)
+    # print ghostType
+    print "options", options
     args['ghosts'] = [ghostType( i+1 ) for i in range( options.numGhosts )]
 
     # Choose a display format

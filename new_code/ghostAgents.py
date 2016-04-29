@@ -38,8 +38,9 @@ class GhostAgent( Agent ):
 
 class DirectedGhost(GhostAgent, SearchAgent):
     def __init__(self, index):
+        self.index = index
         SearchAgent.__init__(self, fn='uniformCostSearch') 
-        GhostAgent.__init__(self, 1)
+        GhostAgent.__init__(self, self.index)
         # self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
         self.package = Package((13,5), 1)
