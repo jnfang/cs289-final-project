@@ -206,7 +206,7 @@ class RoutingTable:
     def  __init__(self, width, height):
         self.width = width
         self.height = height
-        self.table = [[0 for x in range(self.width)] for x in range(self.height)]
+        self.table = [[ [[0.0 for x in range(self.width)] for x in range(self.height)] for x in range(self.width)] for x in range(self.height)]
 
     def print_t(self):
         print self.table
