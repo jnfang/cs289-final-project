@@ -39,16 +39,24 @@ class GhostAgent( Agent ):
 class DirectedGhost(GhostAgent, SearchAgent):
     def __init__(self, index):
         self.index = index
-        SearchAgent.__init__(self, fn='uniformCostSearch') 
         GhostAgent.__init__(self, self.index)
+        SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        # self.package = Package((13,5), 1)
+        DirectedGhost.queues = [util.PriorityQueue()]
+        self.populateQueue(DirectedGhost.queues[0])
+        # self.acceptPackage()
+
+    def populateQueue(self, global_queue):
+        global_queue.push(Package((11, 5), 1), 1)
+        global_queue.push(Package((3, 5), 1), 1)
+        global_queue.push(Package((8, 5), 1), 1)
+        # global_queue.push(Package((1, 1), 1), 1)
 
     def getDistribution(self, state):
         dist = util.Counter()
         if self.package == None:
-            self.acceptPackage(state)
+            self.acceptPackage()
             print self.package.getDestination()
         next_action = SearchAgent.getAction(self, state)
         dist[next_action] = 1.0
@@ -58,10 +66,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def setPackage(self, destination, priority):
         self.package = Package(destination, priority)
 
-    def acceptPackage(self, state): # should this be here
-        queue = state.data.queues[0] # 289TODO: multiple queue support
+    def acceptPackage(self): # should this be here
+        queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
         next_package = queue.pop()
-        print queue.isEmpty()
+        print "accepting ", next_package.getDestination()
         self.setPackage(next_package.getDestination(), next_package.getPriority())
     
 class RandomGhost( GhostAgent ):
