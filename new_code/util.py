@@ -203,10 +203,12 @@ class PriorityQueueWithFunction(PriorityQueue):
 
 class RoutingTable:
     "implements the routing table"
-    def  __init__(self):
-        self.table = [[]]
+    def  __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.table = [[ [[0.0 for x in range(self.width)] for x in range(self.height)] for x in range(self.width)] for x in range(self.height)]
 
-    def print_t(self, item, priority):
+    def print_t(self):
         print self.table
 
     def isEmpty(self):

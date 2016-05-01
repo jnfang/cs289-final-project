@@ -38,7 +38,6 @@ class GhostAgent( Agent ):
 
 class DirectedGhost(GhostAgent, SearchAgent):
     queues = [util.PriorityQueue()]
-    routing = [util.RoutingTable()]
 
     def __init__(self, index):
         self.index = index
