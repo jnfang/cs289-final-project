@@ -47,6 +47,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.origin = None
         self.populateQueue(DirectedGhost.queues[0])
         self.acceptPackage(DirectedGhost.queues[0])
+        print "new ghost created "
 
     def populateQueue(self, global_queue):
         global_queue.push(Package((11, 5), 1), 1)
@@ -79,24 +80,29 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def acceptPackage(self, queue=None): 
         if queue == None:
             queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
-        next_package = queue.pop()
-        self.setPackage(next_package.getDestination(), next_package.getPriority())
+        if not queue.isEmpty():
+            next_package = queue.pop()
+            self.setPackage(next_package.getDestination(), next_package.getPriority())
+            print "agent ", self.index, " accepting ", next_package.getDestination()
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
         x,y = ghostState.configuration.pos
         x, y = int(x), int(y)
         # complete delivery
-        if self.package != None and (x, y) == self.getDestination() and self.package.getPriority() != 0:
-            state.data.food = state.data.food.copy()
-            state.data.food[x][y] = False
-            state.data._foodEaten = x, y
-            print "food eaten set to ", state.data._foodEaten
-            # Go back to a source
-            ghostState.scaredTimer = 10.0
-            print "ghost timer set ", ghostState.scaredTimer
-            go_to = random.choice(state.data.sources)
-            self.setPackage(go_to, 0)
+        if self.package != None and (x, y) == self.getDestination():
+            if self.package.getPriority() != 0:
+                state.data.food = state.data.food.copy()
+                state.data.food[x][y] = False
+                state.data._foodEaten = x, y
+                # print "food eaten set to ", state.data._foodEaten
+                # Go back to a source
+                ghostState.scaredTimer = 10.0
+                print "ghost timer set ", ghostState.scaredTimer
+                go_to = random.choice(state.data.sources)
+                self.setPackage(go_to, 0)
+            else:
+                self.acceptPackage()
     
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."

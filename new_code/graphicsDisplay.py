@@ -245,9 +245,7 @@ class PacmanGraphics:
             self.moveGhost(agentState, agentIndex, prevState, prevImage)
         self.agentImages[agentIndex] = (agentState, prevImage)
 
-        print "updating..."
         if newState._foodEaten != None:
-            print "food eaten updating..."
             self.removeFood(newState._foodEaten, self.food)
         if newState._capsuleEaten != None:
             self.removeCapsule(newState._capsuleEaten, self.capsules)
