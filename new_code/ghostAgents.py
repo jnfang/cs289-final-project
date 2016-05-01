@@ -41,16 +41,28 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.index = index
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         GhostAgent.__init__(self, self.index)
-        # self.package = None # tuple of priority and destination (from priority queue)
+        self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        self.package = Package((13,5), 1)
+        # self.package = Package((13,5), 1)
 
     def getDistribution(self, state):
         dist = util.Counter()
+        if self.package == None:
+            self.acceptPackage(state)
+            print self.package.getDestination()
         next_action = SearchAgent.getAction(self, state)
         dist[next_action] = 1.0
         dist.normalize()
         return dist
+
+    def setPackage(self, destination, priority):
+        self.package = Package(destination, priority)
+
+    def acceptPackage(self, state): # should this be here
+        queue = state.data.queues[0] # 289TODO: multiple queue support
+        next_package = queue.pop()
+        print queue.isEmpty()
+        self.setPackage(next_package.getDestination(), next_package.getPriority())
     
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."

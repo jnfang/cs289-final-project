@@ -78,7 +78,6 @@ class Package:
     def getPriority(self):
         return self.priority
 
-
 class Configuration:
     """
     A Configuration holds the (x,y) coordinate of a character, along with its
@@ -141,6 +140,7 @@ class AgentState:
         self.scaredTimer = 0
         self.numCarrying = 0
         self.numReturned = 0
+        self.package = None
 
     def __str__( self ):
         if self.isPacman:
@@ -170,6 +170,15 @@ class AgentState:
 
     def getDirection(self):
         return self.configuration.getDirection()
+
+    def setPackage(self, destination, priority):
+        self.package = Package(destination, priority)
+
+    def getDestination(self):
+        return self.package.getDestination()
+
+    def getPriority(self):
+        return self.package.getPriority()
 
 class Grid:
     """
@@ -391,9 +400,11 @@ class GameStateData:
         """
         if prevState != None:
             self.food = prevState.food.shallowCopy()
+            self.queues = prevState.queues
             self.capsules = prevState.capsules[:]
             self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
+            self.sources = self.layout.sources #layout needs to be figured out
             self._eaten = prevState._eaten
             self.score = prevState.score
 
@@ -404,6 +415,8 @@ class GameStateData:
         self._lose = False
         self._win = False
         self.scoreChange = 0
+        self.routingTable = {} #layout needs to be changed
+
 
     def deepCopy( self ):
         state = GameStateData( self )
@@ -507,6 +520,12 @@ class GameStateData:
         self.layout = layout
         self.score = 0
         self.scoreChange = 0
+
+        self.queues = [PriorityQueue()]
+        print "new queue created"
+        self.queues[0].push(Package((11, 5), 1), 1)
+        self.queues[0].push(Package((3, 5), 1), 1)
+        self.queues[0].push(Package((8, 5), 1), 1)
 
         self.agentStates = []
         numGhosts = 0

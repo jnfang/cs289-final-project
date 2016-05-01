@@ -278,7 +278,6 @@ class ClassicGameRules:
         agents = [pacmanAgent] + ghostAgents[:layout.getNumGhosts()]
         initState = GameState()
         initState.initialize( layout, len(ghostAgents) )
-        print ghostAgents
         game = Game(agents, display, self, catchExceptions=catchExceptions)
         game.state = initState
         self.initialState = initState.deepCopy()
@@ -410,9 +409,16 @@ class GhostRules:
 
         ghostState = state.data.agentStates[ghostIndex]
         speed = GhostRules.GHOST_SPEED
-        if ghostState.scaredTimer > 0: speed /= 2.0
+        # if ghostState.scaredTimer > 0: speed /= 2.0
         vector = Actions.directionToVector( action, speed )
         ghostState.configuration = ghostState.configuration.generateSuccessor( vector )
+
+        # Eat
+        next = ghostState.configuration.getPosition()
+        nearest = nearestPoint( next )
+        if manhattanDistance( nearest, next ) <= 0.5 :
+            # Remove food
+            GhostRules.checkDelivery( nearest, state, ghostIndex )
     applyAction = staticmethod( applyAction )
 
     def decrementTimer( ghostState):
@@ -459,6 +465,21 @@ class GhostRules:
     def placeGhost(state, ghostState):
         ghostState.configuration = ghostState.start
     placeGhost = staticmethod( placeGhost )
+
+    def checkDelivery( position, state, agentIndex):
+        x,y = position
+        ghostState = state.data.agentStates[agentIndex]
+
+        # Eat food
+        if ghostState.package != None and (x, y) == ghostState.getDestination():
+            state.data.food = state.data.food.copy()
+            state.data.food[x][y] = False
+            state.data._foodEaten = position
+            # Go back to a source
+            go_to = random.choice(state.data.sources)
+            ghostState.setPackage(go_to, 0) # 289TODO: low priority for returning back to a source?
+
+    checkDelivery = staticmethod( checkDelivery )
 
 #############################
 # FRAMEWORK TO START A GAME #
@@ -559,8 +580,6 @@ def readCommand( argv ):
 
     # Choose a ghost agent
     ghostType = loadAgent(options.ghost, noKeyboard)
-    # print ghostType
-    print "options", options
     args['ghosts'] = [ghostType( i+1 ) for i in range( options.numGhosts )]
 
     # Choose a display format

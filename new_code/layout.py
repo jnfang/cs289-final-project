@@ -30,9 +30,8 @@ class Layout:
         self.height= len(layoutText)
         self.walls = Grid(self.width, self.height, False)
         self.food = Grid(self.width, self.height, False)
-        self.p_queue = PriorityQueue() # priority queue 
-        self.source_loc = [] #global locations
-        self.capsules = [] #may use this as source locations
+        self.sources = [] # souce locations
+        self.capsules = [] # will mirror sources
         self.agentPositions = []
         self.numGhosts = 0
         self.processLayoutText(layoutText)
@@ -123,6 +122,7 @@ class Layout:
             self.food[x][y] = True
         elif layoutChar == 'o':
             self.capsules.append((x, y))
+            self.sources.append((x, y))
         elif layoutChar == 'P':
             self.agentPositions.append( (0, (x, y) ) )
         elif layoutChar in ['G']:

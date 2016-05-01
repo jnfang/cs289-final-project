@@ -105,6 +105,7 @@ class SearchAgent(Agent):
         problem = self.searchType(state, index=self.index) # Makes a new search problem
         try:
             problem.goal = self.package.getDestination() 
+            print self.package.getDestination()
         except AttributeError:
             pass
         self.actions  = self.searchFunction(problem) # Find a path
