@@ -203,6 +203,12 @@ class GameState:
         walls = state.getWalls()
         if walls[x][y] == True: ...
         """
+        
+        # if not global_walls is None:
+        #     return global_walls
+        # else: 
+        #     
+        
         return self.data.layout.walls
 
     def hasFood(self, x, y):
@@ -265,8 +271,9 @@ class GameState:
 ############################################################################
 
 SCARED_TIME = 40    # Moves ghosts are scared
-COLLISION_TOLERANCE = 0.9 # How close ghosts must be to Pacman to kill
+COLLISION_TOLERANCE = 1.0 # How close ghosts must be to Pacman to kill
 TIME_PENALTY = 1 # Number of points lost each round
+global_walls = None
 
 class ClassicGameRules:
     """
@@ -394,6 +401,7 @@ class GhostRules:
         reach a dead end, but can turn 90 degrees at intersections.
         """
         conf = state.getGhostState( ghostIndex ).configuration
+        # print state.data.layout.walls
         possibleActions = Actions.getPossibleActions( conf, state.data.layout.walls )
         reverse = Actions.reverseDirection( conf.direction )
         if Directions.STOP in possibleActions:
@@ -432,42 +440,25 @@ class GhostRules:
 
     def checkCollision( state, agentIndex):
         pacmanPosition = state.getPacmanPosition()
-        for index in range(1, len(state.data.agentStates)):
-            ghostState = state.data.agentStates[index]
-            ghostPosition = ghostState.configuration.getPosition()
-            GhostRules.collide(state, ghostState, index)
+        GhostRules.collide(state)
     checkCollision = staticmethod( checkCollision )
 
-    def collide( state, ghostState, agentIndex):
-        # if ghostState.scaredTimer > 0:
-        #     state.data.scoreChange += 200
-        #     GhostRules.placeGhost(state, ghostState)
-        #     ghostState.scaredTimer = 0
-        #     # Added for first-person
-        #     state.data._eaten[agentIndex] = True
-        # else:
-        #     if not state.data._win:
-        #         state.data.scoreChange -= 500
-        #         state.data._lose = True
-        # print state.data.agentStates[agentIndex].configuration
-        for x in range(agentIndex, len(state.data.agentStates)):
-            firstG = state.data.agentStates[x]
-            firstG_pos = firstG.configuration.getPosition()
+    def collide(state):
+        pass
+        # global global_walls
+        # for x in range(1, len(state.data.agentStates)):
+        #     firstG = state.data.agentStates[x]
+        #     firstG_pos = firstG.configuration.getPosition()
             
-            for y in range(x+1, len(state.data.agentStates)):
-                # state.data._eaten[y] = True
-                secondG = state.data.agentStates[y]
-                secondG_pos = secondG.configuration.getPosition()
-                if GhostRules.canKill(firstG_pos, secondG_pos):
-                    print secondG_pos
-                    print state.data.layout.walls
-                    # state.data._eaten[agentIndex] = True
-                    # print True
-                    # state.data.agentStates[x].scaredTimer = SCARED_TIME
-                    # state.data.agentStates[y].scaredTimer = SCARED_TIME
-                    return True
-                    # state.data.agentStates[x].direction = Directions.STOP
-                    # state.data.agentStates[y].direction = Directions.STOP
+        #     for y in range(x+1, len(state.data.agentStates)):
+        #         secondG = state.data.agentStates[y]
+        #         secondG_pos = secondG.configuration.getPosition()
+        #         if GhostRules.canKill(firstG_pos, secondG_pos):
+        #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
+        #             global_walls = state.data.layout.walls
+        #         else:
+        #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
+        #             global_walls = state.data.layout.walls
 
     collide = staticmethod( collide )
 
