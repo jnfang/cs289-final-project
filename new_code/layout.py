@@ -116,7 +116,7 @@ class Layout:
         self.agentPositions = [ ( i == 0, pos) for i, pos in self.agentPositions]
 
     def processLayoutChar(self, x, y, layoutChar):
-        if layoutChar == '%':
+        if layoutChar == '%' or layoutChar == 'G':
             self.walls[x][y] = True
         elif layoutChar == '.':
             self.food[x][y] = True

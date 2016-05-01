@@ -195,10 +195,14 @@ class PositionSearchProblem(search.SearchProblem):
             x,y = state
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
+            # print self.walls
             if not self.walls[nextx][nexty]:
                 nextState = (nextx, nexty)
                 cost = self.costFn(nextState)
                 successors.append((nextState, action, cost))
+            # elif self.walls[5][4]:
+            #     print "HRERE"
+            
 
         # Bookkeeping for display purposes
         self._expanded += 1
