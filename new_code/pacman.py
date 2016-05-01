@@ -406,7 +406,7 @@ class GhostRules:
 
         legal = GhostRules.getLegalActions( state, ghostIndex )
         # if action not in legal:
-            # raise Exception("Illegal ghost action " + str(action))
+        #     raise Exception("Illegal ghost action " + str(action))
 
         ghostState = state.data.agentStates[ghostIndex]
         speed = GhostRules.GHOST_SPEED
@@ -438,6 +438,7 @@ class GhostRules:
     checkDeath = staticmethod( checkDeath )
 
     def collide( state, ghostState, agentIndex):
+        print "ghoststate", state
         # if ghostState.scaredTimer > 0:
         #     state.data.scoreChange += 200
         #     GhostRules.placeGhost(state, ghostState)

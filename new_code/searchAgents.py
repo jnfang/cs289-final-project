@@ -123,6 +123,8 @@ class SearchAgent(Agent):
         i = self.actionIndex
         self.actionIndex += 1
         if i < len(self.actions):
+            # modify this so that it doesn't move when collisions occurr
+            print self.actions[i]
             return self.actions[i]
         else:
             return Directions.STOP
