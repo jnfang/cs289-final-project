@@ -47,6 +47,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.origin = None
         self.populateQueue(DirectedGhost.queues[0])
         self.acceptPackage(DirectedGhost.queues[0])
+        print "new ghost created"
 
     def populateQueue(self, global_queue):
         global_queue.push(Package((11, 5), 1), 1)

@@ -349,6 +349,7 @@ class Actions:
     directionToVector = staticmethod(directionToVector)
 
     def getPossibleActions(config, walls):
+        # print "IN GAME>PY", walls
         possible = []
         x, y = config.pos
         x_int, y_int = int(x + 0.5), int(y + 0.5)
@@ -523,7 +524,9 @@ class GameStateData:
         for isPacman, pos in layout.agentPositions:
             if not isPacman:
                 if numGhosts == numGhostAgents: continue # Max ghosts reached already
-                else: numGhosts += 1
+                else: 
+                    numGhosts += 1
+                    print numGhosts
             self.agentStates.append( AgentState( Configuration( pos, Directions.STOP), isPacman) )
             print "agent state created ", isPacman, pos, " len is ", len(self.agentStates)
         self._eaten = [False for a in self.agentStates]
