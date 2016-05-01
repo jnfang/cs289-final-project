@@ -461,19 +461,15 @@ class GhostRules:
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
             for y in range(x+1, len(state.data.agentStates)):
-                print "x and y", x, y
                 secondG = state.data.agentStates[y]
                 secondG_pos = secondG.configuration.getPosition()
                 if GhostRules.canKill(firstG_pos, secondG_pos):
-                    print firstG, secondG
+                    # print firstG, secondG
                     print "about to collide!"
-                # GhostRules.collide( state, ghostState, index )
 
     collide = staticmethod( collide )
 
     def canKill( pacmanPosition, ghostPosition ):
-        print "Dist", manhattanDistance( ghostPosition, pacmanPosition )
-        # print "collision toll", COLLISION_TOLERANCE
         return manhattanDistance( ghostPosition, pacmanPosition ) <= COLLISION_TOLERANCE
     canKill = staticmethod( canKill )
 

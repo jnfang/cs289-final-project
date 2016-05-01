@@ -38,15 +38,14 @@ class GhostAgent( Agent ):
 
 class DirectedGhost(GhostAgent, SearchAgent):
     queues = [util.PriorityQueue()]
-    
+    routing = [util.RoutingTable()]
+
     def __init__(self, index):
         self.index = index
         GhostAgent.__init__(self, self.index)
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        DirectedGhost.queues = [util.PriorityQueue()]
-        DirectedGhost.routing = [util.RoutingTable()]
         self.populateQueue(DirectedGhost.queues[0])
         self.acceptPackage(DirectedGhost.queues[0])
 
@@ -72,10 +71,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def acceptPackage(self, queue=None): # should this be here
         if queue == None:
             queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
-        print queue
+        # print queue
         next_package = queue.pop()
-        print queue
-        print "accepting ", next_package.getDestination()
+        # print queue
+        # print "accepting ", next_package.getDestination()
         self.setPackage(next_package.getDestination(), next_package.getPriority())
     
 class RandomGhost( GhostAgent ):
