@@ -205,10 +205,9 @@ class GameState:
         """
         
         # if not global_walls is None:
+        #     # print global_walls
         #     return global_walls
         # else: 
-        #     
-        
         return self.data.layout.walls
 
     def hasFood(self, x, y):
@@ -351,8 +350,8 @@ class PacmanRules:
         Edits the state to reflect the results of the action.
         """
         legal = PacmanRules.getLegalActions( state )
-        if action not in legal:
-            raise Exception("Illegal action " + str(action))
+        # if action not in legal:
+        #     raise Exception("Illegal action " + str(action))
 
         pacmanState = state.data.agentStates[0]
 
@@ -426,9 +425,10 @@ class GhostRules:
         # Eat
         next = ghostState.configuration.getPosition()
         nearest = nearestPoint( next )
-        # if manhattanDistance( nearest, next ) <= 0.5 :
+        if manhattanDistance( nearest, next ) <= 0.5 :
             # Remove food
-            # GhostRules.checkDelivery( nearest, state, ghostIndex )
+            GhostRules.checkDelivery( nearest, state, ghostIndex )
+            # print "checking delivery "
     applyAction = staticmethod( applyAction )
 
     def decrementTimer( ghostState):
@@ -444,21 +444,23 @@ class GhostRules:
     checkCollision = staticmethod( checkCollision )
 
     def collide(state):
-        pass
         # global global_walls
         # for x in range(1, len(state.data.agentStates)):
         #     firstG = state.data.agentStates[x]
         #     firstG_pos = firstG.configuration.getPosition()
             
         #     for y in range(x+1, len(state.data.agentStates)):
+
         #         secondG = state.data.agentStates[y]
         #         secondG_pos = secondG.configuration.getPosition()
         #         if GhostRules.canKill(firstG_pos, secondG_pos):
+
         #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
         #             global_walls = state.data.layout.walls
         #         else:
         #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
         #             global_walls = state.data.layout.walls
+        pass
 
     collide = staticmethod( collide )
 
@@ -476,7 +478,6 @@ class GhostRules:
 
         # print "checkin ", ghostState.package, (x, y)
         # Eat food
-        print "checking delivery ", ghostState.package, ghostState.getDestination()
         if ghostState.package != None and (x, y) == ghostState.getDestination():
             # print "found"
             state.data.food = state.data.food.copy()

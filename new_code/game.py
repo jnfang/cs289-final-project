@@ -348,6 +348,7 @@ class Actions:
     directionToVector = staticmethod(directionToVector)
 
     def getPossibleActions(config, walls):
+        print "IN GAME>PY", walls
         possible = []
         x, y = config.pos
         x_int, y_int = int(x + 0.5), int(y + 0.5)
