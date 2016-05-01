@@ -445,7 +445,6 @@ class GhostRules:
     checkCollision = staticmethod( checkCollision )
 
     def collide( state, ghostState, agentIndex):
-        # print "ghoststate", state
         # if ghostState.scaredTimer > 0:
         #     state.data.scoreChange += 200
         #     GhostRules.placeGhost(state, ghostState)
