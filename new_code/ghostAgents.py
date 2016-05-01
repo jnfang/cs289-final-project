@@ -37,6 +37,8 @@ class GhostAgent( Agent ):
         util.raiseNotDefined()
 
 class DirectedGhost(GhostAgent, SearchAgent):
+    queues = [util.PriorityQueue()]
+    
     def __init__(self, index):
         self.index = index
         GhostAgent.__init__(self, self.index)
@@ -46,7 +48,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         DirectedGhost.queues = [util.PriorityQueue()]
         DirectedGhost.routing = [util.RoutingTable()]
         self.populateQueue(DirectedGhost.queues[0])
-        # self.acceptPackage()
+        self.acceptPackage(DirectedGhost.queues[0])
 
     def populateQueue(self, global_queue):
         global_queue.push(Package((11, 5), 1), 1)
@@ -67,8 +69,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def setPackage(self, destination, priority):
         self.package = Package(destination, priority)
 
-    def acceptPackage(self): # should this be here
-        queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
+    def acceptPackage(self, queue=None): # should this be here
+        if queue == None:
+            queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
+        print queue
         next_package = queue.pop()
         print queue
         print "accepting ", next_package.getDestination()
