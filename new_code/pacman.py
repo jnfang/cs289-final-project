@@ -43,6 +43,8 @@ from game import GameStateData
 from game import Game
 from game import Directions
 from game import Actions
+from game import AgentState
+from game import Configuration
 from util import nearestPoint
 from util import manhattanDistance
 import util, layout
@@ -115,7 +117,6 @@ class GameState:
             GhostRules.decrementTimer( state.data.agentStates[agentIndex] )
 
         # Resolve multi-agent effects
-        print "before checking collision"
         GhostRules.checkCollision( state, agentIndex )
 
         # Book keeping
@@ -431,7 +432,6 @@ class GhostRules:
     decrementTimer = staticmethod( decrementTimer )
 
     def checkCollision( state, agentIndex):
-        print "IN COLLISION CHECK"
         pacmanPosition = state.getPacmanPosition()
         for index in range(1, len(state.data.agentStates)):
             ghostState = state.data.agentStates[index]
@@ -456,16 +456,20 @@ class GhostRules:
         #     if not state.data._win:
         #         state.data.scoreChange -= 500
         #         state.data._lose = True
-
-        for x in range(1, len(state.data.agentStates)):
+        print state.data.agentStates[agentIndex].configuration
+        for x in range(agentIndex, len(state.data.agentStates)):
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
+            
             for y in range(x+1, len(state.data.agentStates)):
                 secondG = state.data.agentStates[y]
                 secondG_pos = secondG.configuration.getPosition()
                 if GhostRules.canKill(firstG_pos, secondG_pos):
-                    # print firstG, secondG
-                    print "about to collide!"
+                    state.data.agentStates[x].scaredTimer = SCARED_TIME
+                    state.data.agentStates[y].scaredTimer = SCARED_TIME
+
+                    # state.data.agentStates[x].direction = Directions.STOP
+                    # state.data.agentStates[y].direction = Directions.STOP
 
     collide = staticmethod( collide )
 
