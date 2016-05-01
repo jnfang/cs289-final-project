@@ -133,7 +133,7 @@ class AgentState:
     AgentStates hold the state of an agent (configuration, speed, scared, etc).
     """
 
-    def __init__( self, startConfiguration, isPacman ):
+    def __init__( self, startConfiguration, isPacman, package=None ):
         self.start = startConfiguration
         self.configuration = startConfiguration
         self.isPacman = isPacman
@@ -171,14 +171,14 @@ class AgentState:
     def getDirection(self):
         return self.configuration.getDirection()
 
-    def setPackage(self, destination, priority):
-        self.package = Package(destination, priority)
+    # def setPackage(self, destination, priority):
+    #     self.package = Package(destination, priority)
 
-    def getDestination(self):
-        return self.package.getDestination()
+    # def getDestination(self):
+    #     return self.package.getDestination()
 
-    def getPriority(self):
-        return self.package.getPriority()
+    # def getPriority(self):
+    #     return self.package.getPriority()
 
 class Grid:
     """
@@ -400,7 +400,7 @@ class GameStateData:
         """
         if prevState != None:
             self.food = prevState.food.shallowCopy()
-            self.queues = prevState.queues
+            # self.queues = prevState.queues
             self.capsules = prevState.capsules[:]
             self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
@@ -521,11 +521,7 @@ class GameStateData:
         self.score = 0
         self.scoreChange = 0
 
-        self.queues = [PriorityQueue()]
-        print "new queue created"
-        self.queues[0].push(Package((11, 5), 1), 1)
-        self.queues[0].push(Package((3, 5), 1), 1)
-        self.queues[0].push(Package((8, 5), 1), 1)
+        print "game state initializing here ...."
 
         self.agentStates = []
         numGhosts = 0
