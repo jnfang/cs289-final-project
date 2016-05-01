@@ -482,6 +482,8 @@ class GhostRules:
             state.data.food = state.data.food.copy()
             state.data.food[x][y] = False
             state.data._foodEaten = position
+            print "food eaten set ", position
+
             # Go back to a source
             go_to = random.choice(state.data.sources)
             ghostState.setPackage(go_to, 0) # 289TODO: low priority for returning back to a source?
