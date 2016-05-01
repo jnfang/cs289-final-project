@@ -456,15 +456,17 @@ class GhostRules:
         #     if not state.data._win:
         #         state.data.scoreChange -= 500
         #         state.data._lose = True
-        print state.data.agentStates[agentIndex].configuration
+        # print state.data.agentStates[agentIndex].configuration
         for x in range(agentIndex, len(state.data.agentStates)):
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
             
             for y in range(x+1, len(state.data.agentStates)):
+                # state.data._eaten[y] = True
                 secondG = state.data.agentStates[y]
                 secondG_pos = secondG.configuration.getPosition()
                 if GhostRules.canKill(firstG_pos, secondG_pos):
+                    # state.data._eaten[agentIndex] = True
                     state.data.agentStates[x].scaredTimer = SCARED_TIME
                     state.data.agentStates[y].scaredTimer = SCARED_TIME
 
@@ -689,6 +691,7 @@ def runGames( layout, pacman, ghosts, display, numGames, record, numTraining = 0
 
         game = rules.newGame( layout, pacman, ghosts, gameDisplay, beQuiet, catchExceptions)
         game.run()
+
         if not beQuiet: games.append(game)
 
         if record:

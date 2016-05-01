@@ -402,12 +402,13 @@ class GameStateData:
             self.food = prevState.food.shallowCopy()
             # self.queues = prevState.queues
             self.capsules = prevState.capsules[:]
-            self.agentStates = self.copyAgentStates(prevState.agentStates)
+            self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
             self.sources = self.layout.sources #layout needs to be figured out
             self._eaten = prevState._eaten
             self.score = prevState.score
-            # self.routingTable.print_t()
+            self.routingTable = RoutingTable(prevState.layout.width, prevState.layout.height)
+            self.routingTable.print_t()
 
         self._foodEaten = None
         self._foodAdded = None
@@ -522,6 +523,8 @@ class GameStateData:
         self.layout = layout
         self.score = 0
         self.scoreChange = 0
+        self.routingTable = RoutingTable(layout.width, layout.height)
+        self.routingTable.print_t()
 
         print "game state initializing here ...."
 
