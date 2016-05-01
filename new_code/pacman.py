@@ -117,7 +117,7 @@ class GameState:
             GhostRules.decrementTimer( state.data.agentStates[agentIndex] )
 
         # Resolve multi-agent effects
-        GhostRules.checkCollision( state, agentIndex )
+        GhostRules.checkCollision(state, agentIndex)
 
         # Book keeping
         state.data._agentMoved = agentIndex
@@ -265,7 +265,7 @@ class GameState:
 ############################################################################
 
 SCARED_TIME = 40    # Moves ghosts are scared
-COLLISION_TOLERANCE = 0.7 # How close ghosts must be to Pacman to kill
+COLLISION_TOLERANCE = 0.9 # How close ghosts must be to Pacman to kill
 TIME_PENALTY = 1 # Number of points lost each round
 
 class ClassicGameRules:
@@ -436,12 +436,7 @@ class GhostRules:
         for index in range(1, len(state.data.agentStates)):
             ghostState = state.data.agentStates[index]
             ghostPosition = ghostState.configuration.getPosition()
-            GhostRules.collide( state, ghostState, index )
-        # else:
-        #     ghostState = state.data.agentStates[agentIndex]
-        #     ghostPosition = ghostState.configuration.getPosition()
-        #     if GhostRules.canKill( pacmanPosition, ghostPosition ):
-        #         GhostRules.collide( state, ghostState, agentIndex )
+            GhostRules.collide(state, ghostState, index)
     checkCollision = staticmethod( checkCollision )
 
     def collide( state, ghostState, agentIndex):
@@ -461,12 +456,17 @@ class GhostRules:
             firstG_pos = firstG.configuration.getPosition()
             
             for y in range(x+1, len(state.data.agentStates)):
+                # state.data._eaten[y] = True
                 secondG = state.data.agentStates[y]
                 secondG_pos = secondG.configuration.getPosition()
                 if GhostRules.canKill(firstG_pos, secondG_pos):
-                    state.data.agentStates[x].scaredTimer = SCARED_TIME
-                    state.data.agentStates[y].scaredTimer = SCARED_TIME
-
+                    print secondG_pos
+                    print state.data.layout.walls
+                    # state.data._eaten[agentIndex] = True
+                    # print True
+                    # state.data.agentStates[x].scaredTimer = SCARED_TIME
+                    # state.data.agentStates[y].scaredTimer = SCARED_TIME
+                    return True
                     # state.data.agentStates[x].direction = Directions.STOP
                     # state.data.agentStates[y].direction = Directions.STOP
 
@@ -688,6 +688,7 @@ def runGames( layout, pacman, ghosts, display, numGames, record, numTraining = 0
 
         game = rules.newGame( layout, pacman, ghosts, gameDisplay, beQuiet, catchExceptions)
         game.run()
+
         if not beQuiet: games.append(game)
 
         if record:
