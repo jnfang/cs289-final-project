@@ -100,7 +100,6 @@ class SearchAgent(Agent):
 
         state: a GameState object (pacman.py)
         """
-
         if self.searchFunction == None: raise Exception, "No search function provided for SearchAgent"
         starttime = time.time()
         problem = self.searchType(state, index=self.index) # Makes a new search problem
@@ -110,11 +109,9 @@ class SearchAgent(Agent):
             self.acceptPackage()
             problem.goal = self.package.getDestination()
             pass
-        print "...registering search agent...to ", problem.goal, " from ", state.data.agentStates[self.index].configuration.getPosition()
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
-        print "Path is ...", self.actions
-        # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
+        print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
         if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
 
     def getAction(self, state):
@@ -125,11 +122,12 @@ class SearchAgent(Agent):
         state: a GameState object (pacman.py)
         """
         if 'actionIndex' not in dir(self): self.actionIndex = 0
-        i = self.actionIndex
-        self.actionIndex += 1
+        # i = self.actionIndex
+        # self.actionIndex += 1
+        i = 0
+        # print self.actions
         if i < len(self.actions):
             # modify this so that it doesn't move when collisions occurr
-            # print self.actions[i]
             return self.actions[i]
         else:
             return Directions.STOP
@@ -158,8 +156,8 @@ class PositionSearchProblem(search.SearchProblem):
         if start != None: self.startState = start
         self.goal = goal
         self.costFn = costFn
-        # if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
-            # print 'Warning: this does not look like a regular search maze'
+        if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
+            print 'Warning: this does not look like a regular search maze'
 
         # For display purposes
         self._visited, self._visitedlist, self._expanded = {}, [], 0
@@ -198,10 +196,9 @@ class PositionSearchProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
             if not self.walls[nextx][nexty]:
-                print "next action is wall ", self.walls[nextx][nexty], "at coor ", nextx, nexty
                 nextState = (nextx, nexty)
                 cost = self.costFn(nextState)
-                successors.append( ( nextState, action, cost) )
+                successors.append((nextState, action, cost))
 
         # Bookkeeping for display purposes
         self._expanded += 1

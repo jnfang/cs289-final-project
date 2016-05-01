@@ -42,7 +42,7 @@ class ReflexAgent(Agent):
         Just like in the previous project, getAction takes a GameState and returns
         some Directions.X for some X in the set {North, South, West, East, Stop}
         """
-        print "reflex agent get action"
+        # print "reflex agent get action"
 
         # Collect legal moves and successor states
         legalMoves = gameState.getLegalActions()

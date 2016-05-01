@@ -407,8 +407,7 @@ class GameStateData:
             self.sources = self.layout.sources #layout needs to be figured out
             self._eaten = prevState._eaten
             self.score = prevState.score
-            self.routingTable = RoutingTable(prevState.layout.width, prevState.layout.height)
-            self.routingTable.print_t()
+
 
         self._foodEaten = None
         self._foodAdded = None
@@ -417,9 +416,7 @@ class GameStateData:
         self._lose = False
         self._win = False
         self.scoreChange = 0
-        # state = GameStateData( self )
-        # self.routingTable = RoutingTable(prevState.layout.width, prevState.layout.height) #layout needs to be changed
-
+    
 
     def deepCopy( self ):
         state = GameStateData( self )
@@ -524,7 +521,7 @@ class GameStateData:
         self.score = 0
         self.scoreChange = 0
         self.routingTable = RoutingTable(layout.width, layout.height)
-        self.routingTable.print_t()
+        # self.routingTable.print_t()
 
         print "game state initializing here ...."
 
@@ -620,6 +617,7 @@ class Game:
                 self.mute(i)
                 if self.catchExceptions:
                     try:
+                        print "wtf is this"
                         timed_func = TimeoutFunction(agent.registerInitialState, int(self.rules.getMaxStartupTime(i)))
                         try:
                             start_time = time.time()
@@ -716,23 +714,26 @@ class Game:
                     self.unmute()
                     return
             else:
-                action = agent.getAction(observation)
-                print "acting on...", action
+                # print observation
+                
+                # print "acting on...", action
                 if ("registerInitialState" in dir(agent)):
                     agent.registerInitialState(self.state.deepCopy())
+                action = agent.getAction(observation)
             self.unmute()
 
             # Execute the action
-            self.moveHistory.append( (agentIndex, action) )
+            self.moveHistory.append((agentIndex, action))
             if self.catchExceptions:
                 try:
-                    self.state = self.state.generateSuccessor( agentIndex, action )
+                    self.state = self.state.generateSuccessor(agentIndex, action)
                 except Exception,data:
                     self.mute(agentIndex)
                     self._agentCrash(agentIndex)
                     self.unmute()
                     return
             else:
+                # print action
                 self.state = self.state.generateSuccessor( agentIndex, action )
 
             # Change the display
