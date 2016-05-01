@@ -58,7 +58,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
         dist = util.Counter()
         if self.package == None:
             self.acceptPackage()
-            print self.package.getDestination()
+        else:
+            x, y = state.data.agentStates[self.index].configuration.pos
+            state.data.food[int(x)][int(y)] = True
+        self.checkDelivery(state)        
         next_action = SearchAgent.getAction(self, state)
         dist[next_action] = 1.0
         dist.normalize()
@@ -67,11 +70,29 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def setPackage(self, destination, priority):
         self.package = Package(destination, priority)
 
-    def acceptPackage(self, queue=None): # should this be here
+    def getDestination(self):
+        return self.package.getDestination()
+
+    def getPriority(self):
+        return self.package.getPriority()
+
+    def acceptPackage(self, queue=None): 
         if queue == None:
             queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
         next_package = queue.pop()
         self.setPackage(next_package.getDestination(), next_package.getPriority())
+
+    def checkDelivery(self, state):
+        ghostState = state.data.agentStates[self.index]
+        x,y = ghostState.configuration.pos
+        x, y = int(x), int(y)
+        # complete delivery
+        if self.package != None and (x, y) == self.getDestination():
+            state.data.food = state.data.food.copy()
+            state.data.food[x][y] = False
+            # Go back to a source
+            go_to = random.choice(state.data.sources)
+            self.setPackage(go_to, 0)
     
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."

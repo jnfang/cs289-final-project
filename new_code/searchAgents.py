@@ -31,6 +31,7 @@ Good luck and happy searching!
 from game import Directions
 from game import Agent
 from game import Actions
+from game import Grid
 import util
 import time
 import search
@@ -109,8 +110,9 @@ class SearchAgent(Agent):
             self.acceptPackage()
             problem.goal = self.package.getDestination()
             pass
-        self.food = Grid(self.food.width, self.food.height)
-        self.food[problem.goal[0]][problem.goal[1]] = True
+        past_food = state.data.layout.food
+        past_food = Grid(past_food.width, past_food.height)
+        past_food[problem.goal[0]][problem.goal[1]] = True
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)

@@ -418,10 +418,9 @@ class GhostRules:
         # Eat
         next = ghostState.configuration.getPosition()
         nearest = nearestPoint( next )
-        if manhattanDistance( nearest, next ) <= 0.5 :
+        # if manhattanDistance( nearest, next ) <= 0.5 :
             # Remove food
-            GhostRules.checkDelivery( nearest, state, ghostIndex )
-            # print "checking delivery "
+            # GhostRules.checkDelivery( nearest, state, ghostIndex )
     applyAction = staticmethod( applyAction )
 
     def decrementTimer( ghostState):
@@ -486,6 +485,7 @@ class GhostRules:
 
         # print "checkin ", ghostState.package, (x, y)
         # Eat food
+        print "checking delivery ", ghostState.package, ghostState.getDestination()
         if ghostState.package != None and (x, y) == ghostState.getDestination():
             # print "found"
             state.data.food = state.data.food.copy()

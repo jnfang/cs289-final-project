@@ -140,7 +140,7 @@ class AgentState:
         self.scaredTimer = 0
         self.numCarrying = 0
         self.numReturned = 0
-        self.package = None
+        self.package = package
 
     def __str__( self ):
         if self.isPacman:
@@ -171,14 +171,10 @@ class AgentState:
     def getDirection(self):
         return self.configuration.getDirection()
 
-    # def setPackage(self, destination, priority):
-    #     self.package = Package(destination, priority)
+    def setPackage(self, package):
+        self.package = package
 
-    # def getDestination(self):
-    #     return self.package.getDestination()
-
-    # def getPriority(self):
-    #     return self.package.getPriority()
+    
 
 class Grid:
     """
@@ -522,8 +518,6 @@ class GameStateData:
         self.scoreChange = 0
         self.routingTable = RoutingTable(layout.width, layout.height)
         # self.routingTable.print_t()
-
-        print "game state initializing here ...."
 
         self.agentStates = []
         numGhosts = 0
