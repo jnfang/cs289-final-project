@@ -111,6 +111,8 @@ class SearchAgent(Agent):
             problem.goal = self.package.getDestination()
             pass
         print "...registering search agent...to ", problem.goal, " from ", state.data.agentStates[self.index].configuration.getPosition()
+        self.food = Grid(self.food.width, self.food.height)
+        self.food[problem.goal[0]][problem.goal[1]] = True
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
         print "Path is ...", self.actions
@@ -198,7 +200,7 @@ class PositionSearchProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
             if not self.walls[nextx][nexty]:
-                print "next action is wall ", self.walls[nextx][nexty], "at coor ", nextx, nexty
+                # print "next action is wall ", self.walls[nextx][nexty], "at coor ", nextx, nexty
                 nextState = (nextx, nexty)
                 cost = self.costFn(nextState)
                 successors.append( ( nextState, action, cost) )
