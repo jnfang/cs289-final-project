@@ -109,6 +109,9 @@ class SearchAgent(Agent):
             self.acceptPackage()
             problem.goal = self.package.getDestination()
             pass
+        self.food = Grid(self.food.width, self.food.height)
+        self.food[problem.goal[0]][problem.goal[1]] = True
+
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
         print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))

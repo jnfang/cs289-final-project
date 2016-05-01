@@ -70,10 +70,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def acceptPackage(self, queue=None): # should this be here
         if queue == None:
             queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
-        # print queue
         next_package = queue.pop()
-        # print queue
-        # print "accepting ", next_package.getDestination()
         self.setPackage(next_package.getDestination(), next_package.getPriority())
     
 class RandomGhost( GhostAgent ):

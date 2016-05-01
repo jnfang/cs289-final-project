@@ -714,9 +714,6 @@ class Game:
                     self.unmute()
                     return
             else:
-                # print observation
-                
-                # print "acting on...", action
                 if ("registerInitialState" in dir(agent)):
                     agent.registerInitialState(self.state.deepCopy())
                 action = agent.getAction(observation)
