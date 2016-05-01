@@ -47,7 +47,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.origin = None
         self.populateQueue(DirectedGhost.queues[0])
         self.acceptPackage(DirectedGhost.queues[0])
-        print "new ghost created "
 
     def populateQueue(self, global_queue):
         global_queue.push(Package((11, 5), 1), 1)
@@ -83,7 +82,8 @@ class DirectedGhost(GhostAgent, SearchAgent):
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
-            print "agent ", self.index, " accepting ", next_package.getDestination()
+        else:
+            print "queue is empty"
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
@@ -95,10 +95,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 state.data.food = state.data.food.copy()
                 state.data.food[x][y] = False
                 state.data._foodEaten = x, y
-                # print "food eaten set to ", state.data._foodEaten
                 # Go back to a source
-                ghostState.scaredTimer = 10.0
-                print "ghost timer set ", ghostState.scaredTimer
+                ghostState.scaredTimer = 40
+                print "Package delivered"
+
                 go_to = random.choice(state.data.sources)
                 self.setPackage(go_to, 0)
             else:
