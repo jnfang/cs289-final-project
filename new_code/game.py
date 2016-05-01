@@ -408,7 +408,7 @@ class GameStateData:
             self._eaten = prevState._eaten
             self.score = prevState.score
             self.routingTable = RoutingTable(prevState.layout.width, prevState.layout.height)
-            self.routingTable.print_t()
+            # self.routingTable.print_t()
 
         self._foodEaten = None
         self._foodAdded = None
