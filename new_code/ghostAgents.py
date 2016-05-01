@@ -53,7 +53,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         global_queue.push(Package((11, 5), 1), 1)
         global_queue.push(Package((3, 5), 1), 1)
         global_queue.push(Package((8, 5), 1), 1)
-        # global_queue.push(Package((1, 1), 1), 1)
+        global_queue.push(Package((1, 1), 1), 1)
 
     def getDistribution(self, state):
         dist = util.Counter()

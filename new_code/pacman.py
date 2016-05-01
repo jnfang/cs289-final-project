@@ -445,7 +445,6 @@ class GhostRules:
     checkCollision = staticmethod( checkCollision )
 
     def collide( state, ghostState, agentIndex):
-        # print "ghoststate", state
         # if ghostState.scaredTimer > 0:
         #     state.data.scoreChange += 200
         #     GhostRules.placeGhost(state, ghostState)
@@ -456,7 +455,7 @@ class GhostRules:
         #     if not state.data._win:
         #         state.data.scoreChange -= 500
         #         state.data._lose = True
-        print state.data.agentStates[agentIndex].configuration
+        # print state.data.agentStates[agentIndex].configuration
         for x in range(agentIndex, len(state.data.agentStates)):
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
