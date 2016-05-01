@@ -270,7 +270,7 @@ class GameState:
 ############################################################################
 
 SCARED_TIME = 40    # Moves ghosts are scared
-COLLISION_TOLERANCE = 1.0 # How close ghosts must be to Pacman to kill
+COLLISION_TOLERANCE = 0.9 # How close ghosts must be to Pacman to kill
 TIME_PENALTY = 1 # Number of points lost each round
 global_walls = None
 
@@ -454,7 +454,7 @@ class GhostRules:
         #         secondG = state.data.agentStates[y]
         #         secondG_pos = secondG.configuration.getPosition()
         #         if GhostRules.canKill(firstG_pos, secondG_pos):
-
+        #             print "COLLIDIED RIGHTEFSKSFKLEFJKBEFJKEBFKJBFHJKELK!!!!s"
         #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
         #             global_walls = state.data.layout.walls
         #         else:
