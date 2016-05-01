@@ -397,14 +397,12 @@ class GameStateData:
         """
         if prevState != None:
             self.food = prevState.food.shallowCopy()
-            # self.queues = prevState.queues
             self.capsules = prevState.capsules[:]
             self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
             self.sources = self.layout.sources #layout needs to be figured out
             self._eaten = prevState._eaten
             self.score = prevState.score
-
 
         self._foodEaten = None
         self._foodAdded = None

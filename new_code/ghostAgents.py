@@ -87,10 +87,14 @@ class DirectedGhost(GhostAgent, SearchAgent):
         x,y = ghostState.configuration.pos
         x, y = int(x), int(y)
         # complete delivery
-        if self.package != None and (x, y) == self.getDestination():
+        if self.package != None and (x, y) == self.getDestination() and self.package.getPriority() != 0:
             state.data.food = state.data.food.copy()
             state.data.food[x][y] = False
+            state.data._foodEaten = x, y
+            print "food eaten set to ", state.data._foodEaten
             # Go back to a source
+            ghostState.scaredTimer = 10.0
+            print "ghost timer set ", ghostState.scaredTimer
             go_to = random.choice(state.data.sources)
             self.setPackage(go_to, 0)
     

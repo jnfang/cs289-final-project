@@ -110,14 +110,15 @@ class SearchAgent(Agent):
             self.acceptPackage()
             problem.goal = self.package.getDestination()
             pass
-        past_food = state.data.layout.food
+        past_food = state.data.food
         past_food = Grid(past_food.width, past_food.height)
         past_food[problem.goal[0]][problem.goal[1]] = True
+        # print "food got set at ", problem.goal[0], problem.goal[1]
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
-        print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
-        if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
+        # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
+        # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
 
     def getAction(self, state):
         """
@@ -161,8 +162,8 @@ class PositionSearchProblem(search.SearchProblem):
         if start != None: self.startState = start
         self.goal = goal
         self.costFn = costFn
-        if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
-            print 'Warning: this does not look like a regular search maze'
+        # if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
+        #     print 'Warning: this does not look like a regular search maze'
 
         # For display purposes
         self._visited, self._visitedlist, self._expanded = {}, [], 0
