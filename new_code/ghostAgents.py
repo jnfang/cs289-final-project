@@ -44,6 +44,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
         DirectedGhost.queues = [util.PriorityQueue()]
+        DirectedGhost.routing = [util.RoutingTable()]
         self.populateQueue(DirectedGhost.queues[0])
         # self.acceptPackage()
 
@@ -69,6 +70,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def acceptPackage(self): # should this be here
         queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
         next_package = queue.pop()
+        print queue
         print "accepting ", next_package.getDestination()
         self.setPackage(next_package.getDestination(), next_package.getPriority())
     

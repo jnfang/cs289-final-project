@@ -201,6 +201,20 @@ class PriorityQueueWithFunction(PriorityQueue):
         "Adds an item to the queue with priority from the priority function"
         PriorityQueue.push(self, item, self.priorityFunction(item))
 
+class RoutingTable:
+    "implements the routing table"
+    def  __init__(self):
+        self.table = []
+
+    def push(self, item, priority):
+        pass
+
+    def pop(self):
+        pass
+
+    def isEmpty(self):
+        return True
+
 
 def manhattanDistance( xy1, xy2 ):
     "Returns the Manhattan distance between points xy1 and xy2"

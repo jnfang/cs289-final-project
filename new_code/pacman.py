@@ -115,7 +115,8 @@ class GameState:
             GhostRules.decrementTimer( state.data.agentStates[agentIndex] )
 
         # Resolve multi-agent effects
-        GhostRules.checkDeath( state, agentIndex )
+        print "before checking collision"
+        GhostRules.checkCollision( state, agentIndex )
 
         # Book keeping
         state.data._agentMoved = agentIndex
@@ -419,7 +420,7 @@ class GhostRules:
         if manhattanDistance( nearest, next ) <= 0.5 :
             # Remove food
             GhostRules.checkDelivery( nearest, state, ghostIndex )
-            print "checking delivery "
+            # print "checking delivery "
     applyAction = staticmethod( applyAction )
 
     def decrementTimer( ghostState):
@@ -429,23 +430,22 @@ class GhostRules:
         ghostState.scaredTimer = max( 0, timer - 1 )
     decrementTimer = staticmethod( decrementTimer )
 
-    def checkDeath( state, agentIndex):
+    def checkCollision( state, agentIndex):
+        print "IN COLLISION CHECK"
         pacmanPosition = state.getPacmanPosition()
-        if agentIndex == 0: # Pacman just moved; Anyone can kill him
-            for index in range( 1, len( state.data.agentStates ) ):
-                ghostState = state.data.agentStates[index]
-                ghostPosition = ghostState.configuration.getPosition()
-                if GhostRules.canKill( pacmanPosition, ghostPosition ):
-                    GhostRules.collide( state, ghostState, index )
-        else:
-            ghostState = state.data.agentStates[agentIndex]
+        for index in range(1, len(state.data.agentStates)):
+            ghostState = state.data.agentStates[index]
             ghostPosition = ghostState.configuration.getPosition()
-            if GhostRules.canKill( pacmanPosition, ghostPosition ):
-                GhostRules.collide( state, ghostState, agentIndex )
-    checkDeath = staticmethod( checkDeath )
+            GhostRules.collide( state, ghostState, index )
+        # else:
+        #     ghostState = state.data.agentStates[agentIndex]
+        #     ghostPosition = ghostState.configuration.getPosition()
+        #     if GhostRules.canKill( pacmanPosition, ghostPosition ):
+        #         GhostRules.collide( state, ghostState, agentIndex )
+    checkCollision = staticmethod( checkCollision )
 
     def collide( state, ghostState, agentIndex):
-        print "ghoststate", state
+        # print "ghoststate", state
         # if ghostState.scaredTimer > 0:
         #     state.data.scoreChange += 200
         #     GhostRules.placeGhost(state, ghostState)
@@ -456,10 +456,24 @@ class GhostRules:
         #     if not state.data._win:
         #         state.data.scoreChange -= 500
         #         state.data._lose = True
-        pass
+
+        for x in range(1, len(state.data.agentStates)):
+            firstG = state.data.agentStates[x]
+            firstG_pos = firstG.configuration.getPosition()
+            for y in range(x+1, len(state.data.agentStates)):
+                print "x and y", x, y
+                secondG = state.data.agentStates[y]
+                secondG_pos = secondG.configuration.getPosition()
+                if GhostRules.canKill(firstG_pos, secondG_pos):
+                    print firstG, secondG
+                    print "about to collide!"
+                # GhostRules.collide( state, ghostState, index )
+
     collide = staticmethod( collide )
 
     def canKill( pacmanPosition, ghostPosition ):
+        print "Dist", manhattanDistance( ghostPosition, pacmanPosition )
+        # print "collision toll", COLLISION_TOLERANCE
         return manhattanDistance( ghostPosition, pacmanPosition ) <= COLLISION_TOLERANCE
     canKill = staticmethod( canKill )
 
@@ -471,10 +485,10 @@ class GhostRules:
         x,y = position
         ghostState = state.data.agentStates[agentIndex]
 
-        print "checkin ", ghostState.package, (x, y)
+        # print "checkin ", ghostState.package, (x, y)
         # Eat food
         if ghostState.package != None and (x, y) == ghostState.getDestination():
-            print "found"
+            # print "found"
             state.data.food = state.data.food.copy()
             state.data.food[x][y] = False
             state.data._foodEaten = position
