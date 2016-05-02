@@ -36,14 +36,33 @@ class GhostAgent( Agent ):
         "Returns a Counter encoding a distribution over actions from the provided state."
         util.raiseNotDefined()
 
+def populatePackagesSmall(queue):
+    queue.push(Package((6, 5), 1), 1)
+    queue.push(Package((3, 5), 1), 1)
+    queue.push(Package((8, 5), 1), 1)
+    queue.push(Package((1, 1), 1), 1)
+    queue.push(Package((2, 1), 1), 1)
+    queue.push(Package((1, 3), 1), 1)
+
+def populatePackagesMedium(queue):
+    queue.push(Package((11, 5), 1), 1)
+    queue.push(Package((3, 8), 1), 1)
+    queue.push(Package((18, 5), 1), 1)
+    queue.push(Package((1, 1), 1), 1)
+    queue.push(Package((12, 1), 1), 1)
+    queue.push(Package((2, 10), 1), 1)
+
+def populatePackagesLarge(queue):
+    queue.push(Package((21, 5), 1), 1)
+    queue.push(Package((13, 25), 1), 1)
+    queue.push(Package((28, 5), 1), 1)
+    queue.push(Package((11, 11), 1), 1)
+    queue.push(Package((22, 1), 1), 1)
+    queue.push(Package((11, 13), 1), 1)
+
 class DirectedGhost(GhostAgent, SearchAgent):
     queues = [util.PriorityQueue()]
-    queues[0].push(Package((11, 5), 1), 1)
-    queues[0].push(Package((3, 5), 1), 1)
-    queues[0].push(Package((8, 5), 1), 1)
-    queues[0].push(Package((1, 1), 1), 1)
-    queues[0].push(Package((2, 1), 1), 1)
-    queues[0].push(Package((1, 3), 1), 1)
+    populatePackagesSmall(queues[0])
 
     def __init__(self, index):
         self.index = index
@@ -51,7 +70,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        
         self.acceptPackage(DirectedGhost.queues[0])
 
     def getDistribution(self, state):
@@ -84,6 +102,8 @@ class DirectedGhost(GhostAgent, SearchAgent):
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
+            print "Package accepted by agent ", self.index, next_package.getDestination()
+
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
