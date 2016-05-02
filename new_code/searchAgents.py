@@ -111,11 +111,11 @@ class SearchAgent(Agent):
             problem.goal = self.package.getDestination()
             pass
         state.data.agentStates[self.index].setPackage(self.package)
-        print "searchagents: agent ", self.index, state.data.agentStates[self.index].package.getDestination()
+        # print "searchagents: agent ", self.index, state.data.agentStates[self.index].package.getDestination()
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
-        print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
+        # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
         # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
 
     def getAction(self, state):
@@ -558,7 +558,7 @@ class ClosestDotSearchAgent(SearchAgent):
                     raise Exception, 'findPathToClosestDot returned an illegal move: %s!\n%s' % t
                 currentState = currentState.generateSuccessor(0, action)
         self.actionIndex = 0
-        print 'Path found with cost %d.' % len(self.actions)
+        # print 'Path found with cost %d.' % len(self.actions)
 
     def findPathToClosestDot(self, gameState):
         "Returns a path (a list of actions) to the closest dot, starting from gameState"
