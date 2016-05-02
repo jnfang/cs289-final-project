@@ -592,6 +592,10 @@ class Game:
         sys.stdout = OLD_STDOUT
         sys.stderr = OLD_STDERR
 
+    def decayRoutingTable(self):
+        print "Decaying routing table..."
+        for k, v in self.state.data.routingTable.table.items():
+            v = max(1, v-0.1)
 
     def run( self ):
         """
@@ -717,6 +721,7 @@ class Game:
                     agent.registerInitialState(self.state.deepCopy())
                 action = agent.getAction(observation)
             self.unmute()
+            self.decayRoutingTable()
 
             # Execute the action
             self.moveHistory.append((agentIndex, action))
