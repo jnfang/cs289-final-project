@@ -211,12 +211,8 @@ class GameState:
         if walls[x][y] == True: ...
         """
         if changed_lay:
-            # print "NEW LAYOUT"
-            # print global_walls
             return global_walls
         else: 
-            print "SHOULD BE FALSSE"
-            print self.data.layout.walls
             return self.data.layout.walls
 
     def hasFood(self, x, y):
@@ -461,8 +457,6 @@ class GhostRules:
             global_walls[idx[0]][idx[1]] = False
             idx_changed.remove(idx)
 
-        # global_walls = state.data.layout.walls
-        # idx_changed = []
 
         sources = state.data.sources 
 
@@ -470,37 +464,28 @@ class GhostRules:
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
             
-            for y in range(x+1, len(state.data.agentStates)):
-                secondG = state.data.agentStates[y]
-                secondG_pos = secondG.configuration.getPosition()
-
-                if GhostRules.canKill(firstG_pos, secondG_pos):
-                    state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
-                    changed_lay = True
-                    global_walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
-                    global_walls[int(firstG_pos[0])][int(firstG_pos[1])] = True
+            for y in range(1, len(state.data.agentStates)):
+                if x != y:
+                    secondG = state.data.agentStates[y]
+                    secondG_pos = secondG.configuration.getPosition()
 
                     coord1 = (int(secondG_pos[0]), int(secondG_pos[1]))
                     coord2 = (int(firstG_pos[0]), int(firstG_pos[1]))
-                    # if coord1 and coord2 not in idx_changed:
-                    idx_changed.append(coord1)
-                    idx_changed.append(coord2)
-                    # global_walls = state.data.layout.walls
-                    print idx_changed
-                    # print "NEW LAYOUT"
-                    # print state.data.layout.walls
-                    state.data.agentStates[x].scaredTimer = SCARED_TIME
-                    state.data.agentStates[y].scaredTimer = SCARED_TIME
-                # else:
-                    # changed_lay = False
-                    
-                    # state.data.agentStates[x].scaredTimer = 0
-                    # state.data.agentStates[y].scaredTimer = 0
-                    # state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
-                    # state.data.layout.walls[int(firstG_pos[0])][int(firstG_pos[1])] = False
-                #     # global_walls = dont_change
-        
 
+                    if coord1 in sources or coord2 in sources:
+                        pass
+                    elif GhostRules.canKill(firstG_pos, secondG_pos):
+                        # print "gonna collide"
+                        state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
+
+                        changed_lay = True
+
+                        global_walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
+                        global_walls[int(firstG_pos[0])][int(firstG_pos[1])] = True
+                        
+                        # if coord1 and coord2 not in idx_changed:
+                        idx_changed.append(coord1)
+                        idx_changed.append(coord2)
     collide = staticmethod( collide )
 
     def canKill( pacmanPosition, ghostPosition ):
