@@ -104,7 +104,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
             self.setPackage(next_package.getDestination(), next_package.getPriority())
             print "Package accepted by agent ", self.index, next_package.getDestination()
 
-
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
         x,y = ghostState.configuration.pos
