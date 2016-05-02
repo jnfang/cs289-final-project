@@ -115,7 +115,7 @@ class SearchAgent(Agent):
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
-        # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
+        print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
         # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
 
     def getAction(self, state):
@@ -159,7 +159,8 @@ class PositionSearchProblem(search.SearchProblem):
         self.startState = gameState.getGhostPosition(index)
         if start != None: self.startState = start
         self.goal = goal
-        self.costFn = costFn
+        self.costFn = costFn # change to include routing table
+        self.state_data = gameState.data
         # if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
         #     print 'Warning: this does not look like a regular search maze'
 
@@ -216,6 +217,7 @@ class PositionSearchProblem(search.SearchProblem):
 
         return successors
 
+    # Changed to use routing table
     def getCostOfActions(self, actions):
         """
         Returns the cost of a particular sequence of actions.  If those actions
@@ -229,7 +231,8 @@ class PositionSearchProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             x, y = int(x + dx), int(y + dy)
             if self.walls[x][y]: return 999999
-            cost += self.costFn((x,y))
+            cost += self.state_data.routingTable.getCost(self.startState, self.goal)
+            # cost += self.costFn((x,y))
         return cost
 
 class StayEastSearchAgent(SearchAgent):
