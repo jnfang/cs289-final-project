@@ -54,6 +54,11 @@ import sys, types, time, random, os
 # YOUR INTERFACE TO THE PACMAN WORLD: A GameState #
 ###################################################
 
+global_walls = None
+changed_lay = False
+
+idx_changed = []
+
 class GameState:
     """
     A GameState specifies the full game state, including the food, capsules,
@@ -117,6 +122,7 @@ class GameState:
             GhostRules.decrementTimer( state.data.agentStates[agentIndex] )
 
         # Resolve multi-agent effects
+        # print "checking collision here"
         GhostRules.checkCollision(state, agentIndex)
 
         # Book keeping
@@ -204,12 +210,14 @@ class GameState:
         walls = state.getWalls()
         if walls[x][y] == True: ...
         """
-        if dont_change is None:
-            dont_change = self.data.layout.walls.deepCopy()
-        if not global_walls is None:
+        if changed_lay:
+            # print "NEW LAYOUT"
             # print global_walls
             return global_walls
-        else: return self.data.layout.walls
+        else: 
+            print "SHOULD BE FALSSE"
+            print self.data.layout.walls
+            return self.data.layout.walls
 
     def hasFood(self, x, y):
         return self.data.food[x][y]
@@ -273,9 +281,7 @@ class GameState:
 SCARED_TIME = 40    # Moves ghosts are scared
 COLLISION_TOLERANCE = 1.0 # How close ghosts must be to Pacman to kill
 TIME_PENALTY = 1 # Number of points lost each round
-global_walls = None
 
-dont_change = None
 
 class ClassicGameRules:
     """
@@ -442,34 +448,57 @@ class GhostRules:
     decrementTimer = staticmethod( decrementTimer )
 
     def checkCollision( state, agentIndex):
-        for index in range(1, len( state.data.agentStates ) ):
-            ghostState = state.data.agentStates[index]
-            # ghostPosition = ghostState.configuration.getPosition()
-            GhostRules.collide(state)
+        GhostRules.collide(state)
     checkCollision = staticmethod( checkCollision )
 
     def collide(state):
-        global global_walls, dont_change
+        global global_walls, changed_lay, idx_changed
+
+        print idx_changed
+        for idx in idx_changed:
+            state.data.layout.walls[idx[0]][idx[1]] = False
+            print state.data.layout.walls
+            idx_changed.remove(idx)
+
+        global_walls = state.data.layout.walls
+        # idx_changed = []
+
+        sources = state.data.sources 
+
         for x in range(1, len(state.data.agentStates)):
             firstG = state.data.agentStates[x]
             firstG_pos = firstG.configuration.getPosition()
             
-            for y in range(1, len(state.data.agentStates)):
-                if x != y:
-                    secondG = state.data.agentStates[y]
-                    secondG_pos = secondG.configuration.getPosition()
+            for y in range(x+1, len(state.data.agentStates)):
+                secondG = state.data.agentStates[y]
+                secondG_pos = secondG.configuration.getPosition()
 
-                    if GhostRules.canKill(firstG_pos, secondG_pos):
-                        state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
-                        state.data.routingTable.print_t()
-                        # print "COLLIDIED !!!!!!", firstG_pos, secondG_pos
-                        # state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
-                        state.data.layout.walls[int(firstG_pos[0])][int(firstG_pos[1])] = True
-                        global_walls = state.data.layout.walls
-                    else:
-                        # state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
-                        global_walls = dont_change
-        # pass
+                if GhostRules.canKill(firstG_pos, secondG_pos):
+                    state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
+                    changed_lay = True
+                    global_walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
+                    global_walls[int(firstG_pos[0])][int(firstG_pos[1])] = True
+
+                    coord1 = (int(secondG_pos[0]), int(secondG_pos[1]))
+                    coord2 = (int(firstG_pos[0]), int(firstG_pos[1]))
+                    if coord1 and coord2 not in idx_changed:
+                        idx_changed.append(coord1)
+                        idx_changed.append(coord2)
+                    # global_walls = state.data.layout.walls
+                    
+                    # print "NEW LAYOUT"
+                    # print state.data.layout.walls
+                    state.data.agentStates[x].scaredTimer = SCARED_TIME
+                    state.data.agentStates[y].scaredTimer = SCARED_TIME
+                # else:
+                    # changed_lay = False
+                    
+                    # state.data.agentStates[x].scaredTimer = 0
+                    # state.data.agentStates[y].scaredTimer = 0
+                    # state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
+                    # state.data.layout.walls[int(firstG_pos[0])][int(firstG_pos[1])] = False
+                #     # global_walls = dont_change
+        
 
     collide = staticmethod( collide )
 
@@ -484,7 +513,7 @@ class GhostRules:
     def checkDelivery( position, state, agentIndex):
         x,y = position
         ghostState = state.data.agentStates[agentIndex]
-        print "pacman.py: ghost state package", ghostState.package
+        # print "pacman.py: ghost state package", ghostState.package
         # Check delivered or not
         if ghostState.package != None and (x, y) == ghostState.getDestination():
 
