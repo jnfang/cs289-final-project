@@ -204,15 +204,21 @@ class PriorityQueueWithFunction(PriorityQueue):
         "Adds an item to the queue with priority from the priority function"
         PriorityQueue.push(self, item, self.priorityFunction(item))
 
+from collections import defaultdict
+
 class RoutingTable:
-    "implements the routing table"
+    """implements the routing table"""
     def  __init__(self, width, height):
         self.width = width
         self.height = height
-        self.table = [[ [[1 for x in range(self.width)] for x in range(self.height)] for x in range(self.width)] for x in range(self.height)]
+        # self.table = [[ [[1 for x in range(self.width)] for x in range(self.height)] for x in range(self.width)] for x in range(self.height)]
+        self.table = defaultdict(lambda:1)
 
     def print_t(self):
         print self.table
+
+    def getCost(self, startState, goal):
+        return self.table[(startState, goal)]
 
 
 

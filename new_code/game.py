@@ -142,7 +142,7 @@ class AgentState:
         self.numCarrying = 0
         self.numReturned = 0
         self.package = package
-        print "game.py agentstate init package as ", package 
+        # print "game.py agentstate init package as ", package 
 
     def __str__( self ):
         if self.isPacman:
@@ -407,6 +407,7 @@ class GameStateData:
             self.sources = self.layout.sources 
             self._eaten = prevState._eaten
             self.score = prevState.score
+            self.routingTable = prevState.routingTable
 
         self._foodEaten = None
         self._foodAdded = None
