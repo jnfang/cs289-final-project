@@ -159,10 +159,8 @@ class PositionSearchProblem(search.SearchProblem):
         self.startState = gameState.getGhostPosition(index)
         if start != None: self.startState = start
         self.goal = goal
-        self.costFn = costFn # change to include routing table
+        self.costFn = costFn
         self.state_data = gameState.data
-        # if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
-        #     print 'Warning: this does not look like a regular search maze'
 
         # For display purposes
         self._visited, self._visitedlist, self._expanded = {}, [], 0
