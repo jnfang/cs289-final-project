@@ -61,7 +61,9 @@ class DirectedGhost(GhostAgent, SearchAgent):
         else:
             x, y = state.data.agentStates[self.index].configuration.pos
             state.data.food[int(x)][int(y)] = True
-        self.checkDelivery(state)        
+        self.checkDelivery(state)  
+        # if self.actions is None:
+        #     self.actions = []
         next_action = SearchAgent.getAction(self, state)
         dist[next_action] = 1.0
         dist.normalize()
