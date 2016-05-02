@@ -53,7 +53,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
         self.origin = None
         
         self.acceptPackage(DirectedGhost.queues[0])
-        print "new ghost created"
 
     def getDistribution(self, state):
         dist = util.Counter()
@@ -83,9 +82,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
-            print "queue is ", len(queue.heap), "just poped ", next_package.getDestination()
-        else:
-            print "queue is empty"
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]

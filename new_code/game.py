@@ -134,7 +134,7 @@ class AgentState:
     AgentStates hold the state of an agent (configuration, speed, scared, etc).
     """
 
-    def __init__( self, startConfiguration, isPacman, package=None ):
+    def __init__( self, startConfiguration, isPacman, package=None):
         self.start = startConfiguration
         self.configuration = startConfiguration
         self.isPacman = isPacman
@@ -142,6 +142,7 @@ class AgentState:
         self.numCarrying = 0
         self.numReturned = 0
         self.package = package
+        print "game.py agentstate init package as ", package 
 
     def __str__( self ):
         if self.isPacman:
@@ -158,11 +159,13 @@ class AgentState:
         return hash(hash(self.configuration) + 13 * hash(self.scaredTimer))
 
     def copy( self ):
-        state = AgentState( self.start, self.isPacman )
+        state = AgentState( self.start, self.isPacman, self.package )
         state.configuration = self.configuration
         state.scaredTimer = self.scaredTimer
         state.numCarrying = self.numCarrying
         state.numReturned = self.numReturned
+        if self.package != None:
+            print "game.py copying ", self.package.getDestination(), state.package.getDestination()
         return state
 
     def getPosition(self):
@@ -401,7 +404,7 @@ class GameStateData:
             self.capsules = prevState.capsules[:]
             self.agentStates = self.copyAgentStates( prevState.agentStates )
             self.layout = prevState.layout
-            self.sources = self.layout.sources #layout needs to be figured out
+            self.sources = self.layout.sources 
             self._eaten = prevState._eaten
             self.score = prevState.score
 
@@ -526,9 +529,7 @@ class GameStateData:
                 if numGhosts == numGhostAgents: continue # Max ghosts reached already
                 else: 
                     numGhosts += 1
-                    print numGhosts
             self.agentStates.append( AgentState( Configuration( pos, Directions.STOP), isPacman) )
-            print "agent state created ", isPacman, pos, " len is ", len(self.agentStates)
         self._eaten = [False for a in self.agentStates]
 
 try:

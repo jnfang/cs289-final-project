@@ -110,10 +110,8 @@ class SearchAgent(Agent):
             self.acceptPackage()
             problem.goal = self.package.getDestination()
             pass
-        past_food = state.data.food
-        past_food = Grid(past_food.width, past_food.height)
-        past_food[problem.goal[0]][problem.goal[1]] = True
-        # print "food got set at ", problem.goal[0], problem.goal[1]
+        state.data.agentStates[self.index].setPackage(self.package)
+        print "searchagents: agent ", self.index, state.data.agentStates[self.index].package.getDestination()
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)

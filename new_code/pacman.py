@@ -475,19 +475,18 @@ class GhostRules:
     def checkDelivery( position, state, agentIndex):
         x,y = position
         ghostState = state.data.agentStates[agentIndex]
-
-        # print "checkin ", ghostState.package, (x, y)
-        # Eat food
+        print "pacman.py: ghost state package", ghostState.package
+        # Check delivered or not
         if ghostState.package != None and (x, y) == ghostState.getDestination():
-            # print "found"
+
+            print "found"
+            ghostState
             state.data.food = state.data.food.copy()
             state.data.food[x][y] = False
             state.data._foodEaten = position
             print "food eaten set ", position
 
-            # Go back to a source
-            go_to = random.choice(state.data.sources)
-            ghostState.setPackage(go_to, 0) # 289TODO: low priority for returning back to a source?
+            state.data.agentStates[agentIndex].scaredTimer = SCARED_TIME
 
     checkDelivery = staticmethod( checkDelivery )
 
