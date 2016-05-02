@@ -454,13 +454,14 @@ class GhostRules:
     def collide(state):
         global global_walls, changed_lay, idx_changed
 
-        print idx_changed
+        global_walls = state.data.layout.walls
+
+        # print idx_changed
         for idx in idx_changed:
-            state.data.layout.walls[idx[0]][idx[1]] = False
-            print state.data.layout.walls
+            global_walls[idx[0]][idx[1]] = False
             idx_changed.remove(idx)
 
-        global_walls = state.data.layout.walls
+        # global_walls = state.data.layout.walls
         # idx_changed = []
 
         sources = state.data.sources 
@@ -481,11 +482,11 @@ class GhostRules:
 
                     coord1 = (int(secondG_pos[0]), int(secondG_pos[1]))
                     coord2 = (int(firstG_pos[0]), int(firstG_pos[1]))
-                    if coord1 and coord2 not in idx_changed:
-                        idx_changed.append(coord1)
-                        idx_changed.append(coord2)
+                    # if coord1 and coord2 not in idx_changed:
+                    idx_changed.append(coord1)
+                    idx_changed.append(coord2)
                     # global_walls = state.data.layout.walls
-                    
+                    print idx_changed
                     # print "NEW LAYOUT"
                     # print state.data.layout.walls
                     state.data.agentStates[x].scaredTimer = SCARED_TIME
