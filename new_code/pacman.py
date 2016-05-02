@@ -204,11 +204,10 @@ class GameState:
         if walls[x][y] == True: ...
         """
         
-        # if not global_walls is None:
-        #     # print global_walls
-        #     return global_walls
-        # else: 
-        return self.data.layout.walls
+        if not global_walls is None:
+            # print global_walls
+            return global_walls
+        else: return self.data.layout.walls
 
     def hasFood(self, x, y):
         return self.data.food[x][y]
@@ -444,23 +443,24 @@ class GhostRules:
     checkCollision = staticmethod( checkCollision )
 
     def collide(state):
-        # global global_walls
-        # for x in range(1, len(state.data.agentStates)):
-        #     firstG = state.data.agentStates[x]
-        #     firstG_pos = firstG.configuration.getPosition()
+        global global_walls
+        for x in range(1, len(state.data.agentStates)):
+            firstG = state.data.agentStates[x]
+            firstG_pos = firstG.configuration.getPosition()
             
-        #     for y in range(x+1, len(state.data.agentStates)):
+            for y in range(x+1, len(state.data.agentStates)):
 
-        #         secondG = state.data.agentStates[y]
-        #         secondG_pos = secondG.configuration.getPosition()
-        #         if GhostRules.canKill(firstG_pos, secondG_pos):
-        #             print "COLLIDIED RIGHTEFSKSFKLEFJKBEFJKEBFKJBFHJKELK!!!!s"
-        #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
-        #             global_walls = state.data.layout.walls
-        #         else:
-        #             state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
-        #             global_walls = state.data.layout.walls
-        pass
+                secondG = state.data.agentStates[y]
+                secondG_pos = secondG.configuration.getPosition()
+                if GhostRules.canKill(firstG_pos, secondG_pos):
+                    print "COLLIDIED RIGHTEFSKSFKLEFJKBEFJKEBFKJBFHJKELK!!!!s"
+                    state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
+                    global_walls = state.data.layout.walls
+                    print global_walls
+                else:
+                    state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = False
+                    global_walls = state.data.layout.walls
+        # pass
 
     collide = staticmethod( collide )
 
