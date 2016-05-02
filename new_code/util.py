@@ -215,7 +215,7 @@ class RoutingTable:
         self.table = defaultdict(lambda:1)
 
     def print_t(self):
-        print self.table
+        print self.table.items()
 
     def getCost(self, startState, goal):
         return self.table[(startState, goal)]
