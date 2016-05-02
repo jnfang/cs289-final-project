@@ -38,6 +38,7 @@ class Agent:
     """
     def __init__(self, index=0):
         self.index = index
+        print "new agent created ", index
 
     def getAction(self, state):
         """
@@ -527,6 +528,7 @@ class GameStateData:
                     numGhosts += 1
                     print numGhosts
             self.agentStates.append( AgentState( Configuration( pos, Directions.STOP), isPacman) )
+            print "agent state created ", isPacman, pos, " len is ", len(self.agentStates)
         self._eaten = [False for a in self.agentStates]
 
 try:

@@ -38,6 +38,12 @@ class GhostAgent( Agent ):
 
 class DirectedGhost(GhostAgent, SearchAgent):
     queues = [util.PriorityQueue()]
+    queues[0].push(Package((11, 5), 1), 1)
+    queues[0].push(Package((3, 5), 1), 1)
+    queues[0].push(Package((8, 5), 1), 1)
+    queues[0].push(Package((1, 1), 1), 1)
+    queues[0].push(Package((2, 1), 1), 1)
+    queues[0].push(Package((1, 3), 1), 1)
 
     def __init__(self, index):
         self.index = index
@@ -45,15 +51,9 @@ class DirectedGhost(GhostAgent, SearchAgent):
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        self.populateQueue(DirectedGhost.queues[0])
+        
         self.acceptPackage(DirectedGhost.queues[0])
         print "new ghost created"
-
-    def populateQueue(self, global_queue):
-        global_queue.push(Package((11, 5), 1), 1)
-        global_queue.push(Package((3, 5), 1), 1)
-        global_queue.push(Package((8, 5), 1), 1)
-        global_queue.push(Package((1, 1), 1), 1)
 
     def getDistribution(self, state):
         dist = util.Counter()
@@ -80,24 +80,31 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def acceptPackage(self, queue=None): 
         if queue == None:
             queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
-        next_package = queue.pop()
-        self.setPackage(next_package.getDestination(), next_package.getPriority())
+        if not queue.isEmpty():
+            next_package = queue.pop()
+            self.setPackage(next_package.getDestination(), next_package.getPriority())
+            print "queue is ", len(queue.heap), "just poped ", next_package.getDestination()
+        else:
+            print "queue is empty"
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
         x,y = ghostState.configuration.pos
         x, y = int(x), int(y)
         # complete delivery
-        if self.package != None and (x, y) == self.getDestination() and self.package.getPriority() != 0:
-            state.data.food = state.data.food.copy()
-            state.data.food[x][y] = False
-            state.data._foodEaten = x, y
-            print "food eaten set to ", state.data._foodEaten
-            # Go back to a source
-            ghostState.scaredTimer = 10.0
-            print "ghost timer set ", ghostState.scaredTimer
-            go_to = random.choice(state.data.sources)
-            self.setPackage(go_to, 0)
+        if self.package != None and (x, y) == self.getDestination():
+            if self.package.getPriority() != 0:
+                state.data.food = state.data.food.copy()
+                state.data.food[x][y] = False
+                state.data._foodEaten = x, y
+                # Go back to a source
+                ghostState.scaredTimer = 40
+                print "Package delivered ", x, y
+
+                go_to = random.choice(state.data.sources)
+                self.setPackage(go_to, 0)
+            else:
+                self.acceptPackage()
     
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."
