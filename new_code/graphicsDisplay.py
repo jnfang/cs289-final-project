@@ -572,20 +572,21 @@ class PacmanGraphics:
         """
         Draws an overlay of expanded grid positions for search agents
         """
-        n = float(len(cells))
-        baseColor = [1.0, 0.0, 0.0]
-        self.clearExpandedCells()
-        self.expandedCells = []
-        for k, cell in enumerate(cells):
-            screenPos = self.to_screen( cell)
-            cellColor = formatColor(*[(n-k) * c * .5 / n + .25 for c in baseColor])
-            block = square(screenPos,
-                     0.5 * self.gridSize,
-                     color = cellColor,
-                     filled = 1, behind=2)
-            self.expandedCells.append(block)
-            if self.frameTime < 0:
-                refresh()
+        return
+        # n = float(len(cells))
+        # baseColor = [1.0, 0.0, 0.0]
+        # self.clearExpandedCells()
+        # self.expandedCells = []
+        # for k, cell in enumerate(cells):
+        #     screenPos = self.to_screen( cell)
+        #     cellColor = formatColor(*[(n-k) * c * .5 / n + .25 for c in baseColor])
+        #     block = square(screenPos,
+        #              0.5 * self.gridSize,
+        #              color = cellColor,
+        #              filled = 1, behind=2)
+        #     self.expandedCells.append(block)
+        #     if self.frameTime < 0:
+        #         refresh()
 
     def clearExpandedCells(self):
         if 'expandedCells' in dir(self) and len(self.expandedCells) > 0:

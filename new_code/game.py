@@ -595,7 +595,7 @@ class Game:
     def decayRoutingTable(self):
         print "Decaying routing table..."
         for k, v in self.state.data.routingTable.table.items():
-            v = max(1, v-0.1)
+            v = max(1, v-0.5)
 
     def run( self ):
         """
