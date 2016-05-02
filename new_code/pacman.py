@@ -194,7 +194,7 @@ class GameState:
         return self.data.food
 
     def getWalls(self):
-        global global_walls, dont_change
+        global dont_change
         """
         Returns a Grid of boolean wall indicator variables.
 
@@ -207,7 +207,7 @@ class GameState:
         if dont_change is None:
             dont_change = self.data.layout.walls.deepCopy()
         if not global_walls is None:
-            print global_walls
+            # print global_walls
             return global_walls
         else: return self.data.layout.walls
 
@@ -460,8 +460,10 @@ class GhostRules:
                     secondG_pos = secondG.configuration.getPosition()
 
                     if GhostRules.canKill(firstG_pos, secondG_pos):
-                        print "COLLIDIED !!!!!!", firstG_pos, secondG_pos
-                        state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
+                        state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
+                        state.data.routingTable.print_t()
+                        # print "COLLIDIED !!!!!!", firstG_pos, secondG_pos
+                        # state.data.layout.walls[int(secondG_pos[0])][int(secondG_pos[1])] = True
                         state.data.layout.walls[int(firstG_pos[0])][int(firstG_pos[1])] = True
                         global_walls = state.data.layout.walls
                     else:
