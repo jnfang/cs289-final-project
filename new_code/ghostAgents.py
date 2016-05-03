@@ -72,9 +72,9 @@ class DirectedGhost(GhostAgent, SearchAgent):
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        self.acceptPackage()
 
     def getDistribution(self, state):
+        self.state = state
         dist = util.Counter()
         if self.package == None:
             self.acceptPackage(state)
@@ -98,28 +98,25 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def getPriority(self):
         return self.package.getPriority()
 
-    def acceptPackage(self, state=None, queue=None): 
-        if state == None:
-            source_idx = 0
+    def acceptPackage(self, state, queue=None): 
 
-        else:
-            ghostState = state.data.agentStates[self.index]
-            x,y = ghostState.configuration.pos
-            
-            min_dist = 9999999
-            min_source = None
-            for source in state.data.sources:
-                if util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
-                    min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
-                    min_source = source
+        ghostState = state.data.agentStates[self.index]
+        x,y = ghostState.configuration.pos
+        
+        min_dist = 9999999
+        min_source = None
+        for source in state.data.sources:
+            if util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
+                min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
+                min_source = source
 
-            source_idx = state.data.sources.index(min_source)
+        source_idx = state.data.sources.index(min_source)
         
         queue = DirectedGhost.queues[source_idx] # 289TODO: multiple queue support
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
-            print "Package accepted by agent ", self.index, next_package.getDestination()
+            print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
@@ -139,14 +136,21 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 min_dist = 9999999
                 min_source = None
                 for source in state.data.sources:
-                    if util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
+                    source_idx = state.data.sources.index(source)
+                    queue = DirectedGhost.queues[source_idx]
+                    if queue.isEmpty():
+                        try:
+                            state.data.sources.remove(source_idx)
+                        except ValueError:
+                            pass
+                    elif util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
                         min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
                         min_source = source
 
                 go_to = min_source
                 self.setPackage(go_to, 0)
             else:
-                self.acceptPackage()
+                self.acceptPackage(state)
     
 class RandomGhost( GhostAgent ):
     "A ghost that chooses a legal action uniformly at random."
