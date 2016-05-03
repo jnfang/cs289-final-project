@@ -478,7 +478,7 @@ class GhostRules:
                     elif GhostRules.canKill(firstG_pos, secondG_pos):
                         # print "gonna collide"
                         total_collisions += 1
-                        print "total_collisions", total_collisions
+                        # print "total_collisions", total_collisions
                         state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
 
                         changed_lay = True

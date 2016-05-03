@@ -37,21 +37,63 @@ class GhostAgent( Agent ):
         "Returns a Counter encoding a distribution over actions from the provided state."
         util.raiseNotDefined()
 
-def populatePackagesSmall(queue):
+def populatePackagesSmall1(queue):
+    queue.push(Package((1,1),1),1)
+    queue.push(Package((5,5),1),1)
+    queue.push(Package((6,5),1),1)
+    queue.push(Package((4,2),1),1)
+    queue.push(Package((5,2),1),1)
+    queue.push(Package((6,2),1),1)
+    queue.push(Package((8,2),1),1)
+    queue.push(Package((3,1),1),1)
+
+def populatePackagesSmall2(queue):
+    queue.push(Package((4,1),1),1)
+    queue.push(Package((5,2),1),1)
+    queue.push(Package((7,3),1),1)
+    queue.push(Package((8,3),1),1)
+    queue.push(Package((1,4),1),1)
+    queue.push(Package((2,4),1),1)
+    queue.push(Package((7,5),1),1)
+    queue.push(Package((8,5),1),1)
+
+def populatePackagesSmall3(queue):
+    queue.push(Package((2,2),1),1)
+    queue.push(Package((3,2),1),1)
+    queue.push(Package((6,2),1),1)
+    queue.push(Package((8,2),1),1)
+    queue.push(Package((1,3),1),1)
+    queue.push(Package((2,3),1),1)
+    queue.push(Package((3,3),1),1)
+    queue.push(Package((5,3),1),1)
+
+def populatePackagesSmall4(queue):
+    queue.push(Package((6,3),1),1)
+    queue.push(Package((6,4),1),1)
+    queue.push(Package((8,4),1),1)
+    queue.push(Package((1,5),1),1)
+    queue.push(Package((5,1),1),1)
+    queue.push(Package((6,1),1),1)
+    queue.push(Package((7,1),1),1)
+    queue.push(Package((8,1),1),1)
+
+def populatePackagesSmall5(queue):
+    queue.push(Package((1,2),1),1)
+    queue.push(Package((2,2),1),1)
+    queue.push(Package((3,2),1),1)
+    queue.push(Package((4,2),1),1)
+    queue.push(Package((2,5),1),1)
+    queue.push(Package((3,5),1),1)
+    queue.push(Package((4,5),1),1)
+    queue.push(Package((1,3),1),1)
+
+def populatePackagesMedium1(queue):
     queue.push(Package((6, 5), 1), 1)
     queue.push(Package((3, 5), 1), 1)
     queue.push(Package((8, 5), 1), 1)
     queue.push(Package((1, 1), 1), 1)
     queue.push(Package((2, 1), 1), 1)
     queue.push(Package((1, 3), 1), 1)
-
-def populatePackagesMedium(queue):
-    queue.push(Package((11, 5), 1), 1)
-    queue.push(Package((3, 8), 1), 1)
-    queue.push(Package((18, 5), 1), 1)
-    queue.push(Package((18, 18), 1), 1)
-    queue.push(Package((12, 1), 1), 1)
-    queue.push(Package((2, 10), 1), 1)
 
 def populatePackagesLarge1(queue):
     queue.push(Package((21, 5), 1), 1)
@@ -73,9 +115,11 @@ starttime = None
 class DirectedGhost(GhostAgent, SearchAgent):
     global starttime
     starttime = time.time() 
-    queues = [util.PriorityQueue(), util.PriorityQueue()]
-    populatePackagesMedium(queues[0])
-    populatePackagesMedium(queues[1])
+    queues = [util.PriorityQueue()] #, util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
+    populatePackagesSmall2(queues[0])
+    # populatePackagesSmall2(queues[1])
+    # populatePackagesSmall3(queues[2])
+    # populatePackagesSmall4(queues[3])
 
 
     def __init__(self, index):
@@ -131,7 +175,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
-            # print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
+            print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
@@ -146,7 +190,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 state.data._foodEaten = x, y
                 # Go back to a source
                 ghostState.scaredTimer = 40
-                # print "Package delivered ", x, y
+                print "Package delivered ", x, y
 
                 # go to closest source using manhattan distance 
                 min_dist = 9999999
@@ -156,6 +200,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
                     # print "HELLOOOO"
                     # print (time.time() - starttime)
                     # return
+                keep_source = state.data.sources[0]
                 for source in state.data.sources:
                     source_idx = state.data.sources.index(source)
                     queue = DirectedGhost.queues[source_idx]
@@ -169,6 +214,8 @@ class DirectedGhost(GhostAgent, SearchAgent):
                         min_source = source
 
                 go_to = min_source
+                if go_to == None:
+                    go_to = keep_source
                 self.setPackage(go_to, 0)
             else:
                 self.acceptPackage(state)
