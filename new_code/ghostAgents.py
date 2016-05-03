@@ -48,7 +48,7 @@ def populatePackagesMedium(queue):
     queue.push(Package((11, 5), 1), 1)
     queue.push(Package((3, 8), 1), 1)
     queue.push(Package((18, 5), 1), 1)
-    queue.push(Package((1, 1), 1), 1)
+    queue.push(Package((18, 18), 1), 1)
     queue.push(Package((12, 1), 1), 1)
     queue.push(Package((2, 10), 1), 1)
 
@@ -61,8 +61,10 @@ def populatePackagesLarge(queue):
     queue.push(Package((11, 13), 1), 1)
 
 class DirectedGhost(GhostAgent, SearchAgent):
-    queues = [util.PriorityQueue()]
-    populatePackagesSmall(queues[0])
+    queues = [util.PriorityQueue(), util.PriorityQueue()]
+    populatePackagesMedium(queues[0])
+    populatePackagesMedium(queues[1])
+
 
     def __init__(self, index):
         self.index = index
@@ -70,12 +72,12 @@ class DirectedGhost(GhostAgent, SearchAgent):
         SearchAgent.__init__(self, fn='uniformCostSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
-        self.acceptPackage(DirectedGhost.queues[0])
+        self.acceptPackage()
 
     def getDistribution(self, state):
         dist = util.Counter()
         if self.package == None:
-            self.acceptPackage()
+            self.acceptPackage(state)
         else:
             x, y = state.data.agentStates[self.index].configuration.pos
             state.data.food[int(x)][int(y)] = True
@@ -96,9 +98,24 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def getPriority(self):
         return self.package.getPriority()
 
-    def acceptPackage(self, queue=None): 
-        if queue == None:
-            queue = DirectedGhost.queues[0] # 289TODO: multiple queue support
+    def acceptPackage(self, state=None, queue=None): 
+        if state == None:
+            source_idx = 0
+
+        else:
+            ghostState = state.data.agentStates[self.index]
+            x,y = ghostState.configuration.pos
+            
+            min_dist = 9999999
+            min_source = None
+            for source in state.data.sources:
+                if util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
+                    min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
+                    min_source = source
+
+            source_idx = state.data.sources.index(min_source)
+        
+        queue = DirectedGhost.queues[source_idx] # 289TODO: multiple queue support
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
@@ -119,7 +136,15 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 ghostState.scaredTimer = 40
                 print "Package delivered ", x, y
 
-                go_to = random.choice(state.data.sources)
+                # go to closest source using manhattan distance 
+                min_dist = 9999999
+                min_source = None
+                for source in state.data.sources:
+                    if util.manhattanDistance(source, ghostState.configuration.pos) < min_dist:
+                        min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
+                        min_source = source
+
+                go_to = min_source
                 self.setPackage(go_to, 0)
             else:
                 self.acceptPackage()
