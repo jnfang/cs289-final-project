@@ -1,0 +1,133 @@
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (17, 16) 1
+New max nodes expanded: 316 by agent 1
+Package accepted by agent  2 (17, 12) 3
+Package accepted by agent  3 (1, 9) 2
+Package accepted by agent  4 (17, 17) 0
+Package delivered  17 12
+Package delivered  1 9
+Package accepted by agent  2 (7, 2) 2
+Package delivered  17 17
+Package accepted by agent  3 (1, 13) 1
+total_collisions 1
+total_collisions 2
+total_collisions 3
+total_collisions 4
+Package delivered  17 16
+Package accepted by agent  4 (8, 11) 3
+Package delivered  7 2
+Package delivered  1 13
+Package accepted by agent  1 (17, 7) 3
+Package delivered  8 11
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+total_collisions 9
+total_collisions 10
+total_collisions 11
+total_collisions 12
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+Package accepted by agent  2 (1, 12) 1
+Package accepted by agent  4 (7, 12) 2
+Package accepted by agent  3 (8, 4) 1
+Package delivered  7 12
+Package delivered  17 7
+Package delivered  1 12
+Package delivered  8 4
+Package accepted by agent  4 (7, 3) 3
+Package accepted by agent  3 (8, 15) 1
+Package accepted by agent  1 (4, 8) 2
+Package accepted by agent  2 (4, 5) 1
+Package delivered  4 5
+total_collisions 17
+total_collisions 18
+Package accepted by agent  2 (1, 11) 1
+total_collisions 19
+total_collisions 20
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+total_collisions 25
+total_collisions 26
+total_collisions 27
+total_collisions 28
+Package delivered  4 8
+Package delivered  8 15
+Package delivered  7 3
+Package delivered  1 11
+Package accepted by agent  3 (7, 10) 3
+Package accepted by agent  1 (1, 10) 1
+Package delivered  7 10
+Package delivered  1 10
+Package accepted by agent  3 (4, 9) 2
+Package accepted by agent  1 (13, 15) 2
+Package delivered  13 15
+Package delivered  4 9
+Package accepted by agent  1 (8, 2) 3
+total_collisions 29
+total_collisions 30
+total_collisions 31
+total_collisions 32
+Package accepted by agent  3 (1, 7) 2
+Package delivered  8 2
+Package accepted by agent  1 (17, 17) 0
+Package delivered  1 7
+Package delivered  17 17
+Package accepted by agent  3 (13, 11) 2
+Package delivered  13 11
+total_collisions 33
+total_collisions 34
+total_collisions 35
+total_collisions 36
+total_collisions 37
+total_collisions 38
+Package accepted by agent  3 (17, 2) 3
+Package accepted by agent  1 (13, 9) 3
+Package delivered  13 9
+Package delivered  17 2
+Package accepted by agent  1 (1, 1) 0
+Package accepted by agent  3 (1, 8) 0
+Package delivered  1 1
+Package delivered  1 8
+Package accepted by agent  1 (4, 9) 0
+Package accepted by agent  3 (17, 13) 0
+Package delivered  4 9
+Package delivered  17 13
+Package accepted by agent  1 (17, 14) 0
+Package accepted by agent  3 (17, 15) 0
+Package delivered  17 14
+Package delivered  17 15
+Package accepted by agent  1 (13, 16) 0
+Package accepted by agent  3 (7, 11) 0
+Package delivered  13 16
+total_collisions 39
+total_collisions 40
+total_collisions 41
+total_collisions 42
+Package delivered  7 11
+Package accepted by agent  1 (7, 13) 0
+Package accepted by agent  3 (7, 15) 0
+Package delivered  7 13
+Package delivered  7 15
+Package accepted by agent  1 (8, 1) 0
+Package delivered  8 1
+Package accepted by agent  1 (8, 3) 0
+Package accepted by agent  3 (4, 6) 0
+Package delivered  8 3
+Package accepted by agent  1 (4, 7) 0
+Package delivered  4 6
+28.6322832108
+Package delivered  4 7
+29.6202530861

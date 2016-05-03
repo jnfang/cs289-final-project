@@ -1,0 +1,105 @@
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (33, 24) 1
+New max nodes expanded: 1194 by agent 1
+Package accepted by agent  2 (21, 36) 3
+Package accepted by agent  3 (18, 37) 0
+Package accepted by agent  4 (21, 16) 2
+Package delivered  21 36
+Package delivered  21 16
+Package accepted by agent  2 (31, 29) 3
+Package accepted by agent  4 (14, 26) 2
+total_collisions 1
+total_collisions 2
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+Package delivered  33 24
+Package delivered  18 37
+Package accepted by agent  1 (7, 25) 2
+Package delivered  14 26
+Package accepted by agent  3 (15, 19) 3
+Package delivered  31 29
+Package accepted by agent  4 (36, 15) 3
+New max nodes expanded: 1284 by agent 4
+Package accepted by agent  2 (2, 13) 2
+Package delivered  7 25
+Package delivered  15 19
+total_collisions 9
+total_collisions 10
+Package accepted by agent  1 (12, 19) 1
+Package accepted by agent  3 (21, 26) 1
+Package delivered  12 19
+Package delivered  2 13
+Package accepted by agent  1 (4, 10) 1
+Package accepted by agent  2 (34, 26) 1
+Package delivered  36 15
+Package delivered  21 26
+Package delivered  4 10
+Package accepted by agent  1 (3, 11) 1
+Package accepted by agent  4 (19, 8) 2
+Package accepted by agent  3 (3, 27) 2
+Package delivered  3 11
+total_collisions 11
+total_collisions 12
+Package accepted by agent  1 (29, 13) 1
+Package delivered  34 26
+Package delivered  19 8
+Package accepted by agent  2 (35, 26) 2
+Package accepted by agent  4 (16, 14) 0
+Package delivered  3 27
+Package delivered  29 13
+Package delivered  35 26
+Package accepted by agent  1 (8, 25) 2
+Package accepted by agent  3 (14, 27) 3
+Package delivered  16 14
+Package delivered  14 27
+Package accepted by agent  4 (14, 31) 1
+Package delivered  8 25
+Package accepted by agent  3 (35, 25) 3
+Package accepted by agent  1 (7, 7) 3
+Package delivered  14 31
+Package accepted by agent  4 (17, 35) 3
+Package delivered  17 35
+Package delivered  35 25
+Package delivered  7 7
+Package accepted by agent  1 (32, 29) 0
+Package accepted by agent  3 (33, 33) 0
+Package accepted by agent  4 (26, 25) 0
+Package delivered  26 25
+Package delivered  32 29
+Package delivered  33 33
+Package accepted by agent  4 (37, 30) 0
+Package accepted by agent  1 (3, 11) 0
+Package accepted by agent  3 (3, 27) 0
+New max nodes expanded: 1312 by agent 3
+Package delivered  37 30
+Package delivered  3 11
+Package delivered  3 27
+Package accepted by agent  1 (7, 14) 0
+Package accepted by agent  4 (32, 30) 0
+Package delivered  7 14
+Package delivered  32 30
+Package accepted by agent  3 (23, 30) 0
+Package accepted by agent  1 (19, 20) 0
+Package accepted by agent  4 (27, 5) 0
+Package delivered  27 5
+Package delivered  23 30
+Package accepted by agent  4 (38, 33) 0
+New max nodes expanded: 1406 by agent 4
+Package delivered  19 20
+Package accepted by agent  3 (5, 32) 0
+Package accepted by agent  1 (1, 29) 0
+Package delivered  5 32
+58.8600769043
+Package delivered  1 29
+59.2827308178

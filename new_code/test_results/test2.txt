@@ -1,0 +1,92 @@
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (17, 17) 0
+New max nodes expanded: 319 by agent 1
+Package accepted by agent  2 (17, 16) 1
+Package accepted by agent  3 (17, 17) 0
+Package accepted by agent  4 (1, 13) 1
+Package delivered  17 16
+Package delivered  1 13
+Package accepted by agent  2 (1, 12) 1
+Package delivered  17 17
+New max nodes expanded: 323 by agent 1
+Package accepted by agent  4 (8, 4) 1
+Package delivered  17 17
+Package delivered  1 12
+Package accepted by agent  3 (8, 15) 1
+Package delivered  8 15
+Package accepted by agent  1 (4, 5) 1
+Package delivered  8 4
+Package accepted by agent  3 (1, 11) 1
+Package accepted by agent  4 (1, 1) 0
+Package accepted by agent  2 (1, 10) 1
+Package delivered  1 1
+Package delivered  1 11
+Package delivered  4 5
+Package accepted by agent  1 (1, 8) 0
+Package delivered  1 10
+Package accepted by agent  4 (4, 9) 0
+Package accepted by agent  3 (17, 12) 1
+Package delivered  4 9
+Package delivered  1 8
+Package accepted by agent  2 (17, 13) 0
+Package delivered  17 12
+Package accepted by agent  4 (17, 14) 0
+Package accepted by agent  1 (17, 15) 0
+Package accepted by agent  3 (8, 11) 1
+Package delivered  17 13
+Package delivered  8 11
+Package accepted by agent  3 (17, 7) 1
+Package delivered  17 14
+Package delivered  17 15
+Package accepted by agent  2 (7, 3) 1
+Package accepted by agent  4 (7, 10) 1
+Package accepted by agent  1 (8, 2) 1
+Package delivered  17 7
+Package delivered  7 10
+Package delivered  7 3
+Package accepted by agent  2 (1, 9) 0
+Package accepted by agent  4 (7, 2) 0
+Package delivered  8 2
+Package accepted by agent  3 (7, 12) 0
+Package delivered  7 2
+Package accepted by agent  1 (4, 8) 0
+Package accepted by agent  4 (4, 9) 0
+Package delivered  1 9
+Package delivered  7 12
+Package delivered  4 8
+Package accepted by agent  3 (17, 2) 1
+Package delivered  4 9
+Package accepted by agent  2 (13, 15) 0
+Package accepted by agent  1 (1, 7) 0
+Package accepted by agent  4 (13, 11) 0
+Package delivered  1 7
+Package delivered  13 15
+Package delivered  17 2
+Package delivered  13 11
+Package accepted by agent  2 (13, 9) 1
+Package accepted by agent  1 (13, 16) 0
+Package accepted by agent  3 (7, 11) 0
+Package delivered  13 9
+Package delivered  7 11
+Package delivered  13 16
+Package accepted by agent  2 (7, 13) 0
+Package accepted by agent  3 (7, 15) 0
+Package delivered  7 13
+Package accepted by agent  1 (8, 1) 0
+Package delivered  7 15
+Package delivered  8 1
+Package accepted by agent  2 (8, 3) 0
+Package accepted by agent  1 (4, 6) 0
+Package delivered  8 3
+Package accepted by agent  2 (4, 7) 0
+Package delivered  4 6
+68.7115728855
+Package delivered  4 7
+69.6164369583

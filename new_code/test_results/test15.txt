@@ -1,0 +1,309 @@
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function breadthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (1, 1) 0
+New max nodes expanded: 8 by agent 1
+Package accepted by agent  2 (2, 2) 2
+New max nodes expanded: 11 by agent 2
+Package accepted by agent  3 (4, 1) 1
+New max nodes expanded: 19 by agent 3
+Package accepted by agent  4 (6, 3) 3
+Package delivered  1 1
+Package delivered  6 3
+Package accepted by agent  1 (5, 5) 0
+Package delivered  2 2
+Package delivered  4 1
+New max nodes expanded: 25 by agent 1
+total_collisions 1
+total_collisions 2
+Package accepted by agent  4 (5, 2) 1
+Package accepted by agent  2 (6, 5) 0
+New max nodes expanded: 29 by agent 2
+Package accepted by agent  3 (4, 2) 0
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+total_collisions 9
+total_collisions 10
+Package delivered  5 2
+total_collisions 11
+total_collisions 12
+Package delivered  4 2
+Package delivered  5 5
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+total_collisions 17
+total_collisions 18
+total_collisions 19
+total_collisions 20
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+Package accepted by agent  4 (7, 3) 1
+total_collisions 25
+total_collisions 26
+total_collisions 27
+total_collisions 28
+total_collisions 29
+total_collisions 30
+total_collisions 31
+total_collisions 32
+Package delivered  7 3
+total_collisions 33
+total_collisions 34
+total_collisions 35
+total_collisions 36
+Package delivered  6 5
+Package accepted by agent  3 (5, 2) 0
+Package accepted by agent  4 (8, 3) 1
+total_collisions 37
+total_collisions 38
+total_collisions 39
+total_collisions 40
+Package delivered  8 3
+Package accepted by agent  2 (6, 4) 3
+Package accepted by agent  4 (1, 4) 1
+Package delivered  5 2
+New max nodes expanded: 33 by agent 4
+total_collisions 41
+total_collisions 42
+total_collisions 43
+total_collisions 44
+Package accepted by agent  1 (3, 2) 2
+Package delivered  6 4
+total_collisions 45
+total_collisions 46
+total_collisions 47
+total_collisions 48
+total_collisions 49
+total_collisions 50
+total_collisions 51
+total_collisions 52
+total_collisions 53
+total_collisions 54
+total_collisions 55
+total_collisions 56
+total_collisions 57
+total_collisions 58
+total_collisions 59
+total_collisions 60
+total_collisions 61
+total_collisions 62
+total_collisions 63
+total_collisions 64
+total_collisions 65
+total_collisions 66
+total_collisions 67
+total_collisions 68
+Package accepted by agent  3 (2, 4) 1
+Package delivered  3 2
+Package accepted by agent  2 (7, 5) 1
+Package accepted by agent  1 (6, 2) 0
+Package delivered  1 4
+Package delivered  7 5
+Package accepted by agent  4 (6, 2) 2
+Package delivered  2 4
+total_collisions 69
+total_collisions 70
+total_collisions 71
+total_collisions 72
+Package delivered  6 2
+total_collisions 73
+total_collisions 74
+Package accepted by agent  2 (8, 4) 3
+total_collisions 75
+total_collisions 76
+Package accepted by agent  3 (8, 2) 2
+Package delivered  8 4
+Package accepted by agent  1 (8, 5) 1
+Package accepted by agent  2 (1, 5) 3
+total_collisions 77
+total_collisions 78
+total_collisions 79
+total_collisions 80
+total_collisions 81
+total_collisions 82
+total_collisions 83
+total_collisions 84
+Package delivered  6 2
+Package delivered  8 5
+total_collisions 85
+total_collisions 86
+Package accepted by agent  1 (5, 1) 3
+total_collisions 87
+total_collisions 88
+total_collisions 89
+total_collisions 90
+total_collisions 91
+total_collisions 92
+Package delivered  8 2
+total_collisions 93
+total_collisions 94
+total_collisions 95
+total_collisions 96
+Package accepted by agent  4 (8, 2) 0
+total_collisions 97
+total_collisions 98
+total_collisions 99
+total_collisions 100
+total_collisions 101
+total_collisions 102
+Package delivered  1 5
+total_collisions 103
+total_collisions 104
+total_collisions 105
+total_collisions 106
+total_collisions 107
+total_collisions 108
+total_collisions 109
+total_collisions 110
+total_collisions 111
+total_collisions 112
+Package accepted by agent  2 (1, 3) 2
+total_collisions 113
+total_collisions 114
+total_collisions 115
+total_collisions 116
+total_collisions 117
+total_collisions 118
+total_collisions 119
+total_collisions 120
+total_collisions 121
+total_collisions 122
+total_collisions 123
+total_collisions 124
+Package delivered  5 1
+Package delivered  1 3
+Package accepted by agent  3 (6, 1) 3
+Package accepted by agent  1 (3, 1) 0
+Package delivered  8 2
+total_collisions 125
+total_collisions 126
+Package delivered  3 1
+Package accepted by agent  2 (1, 2) 0
+total_collisions 127
+total_collisions 128
+total_collisions 129
+total_collisions 130
+Package accepted by agent  1 (2, 2) 0
+total_collisions 131
+total_collisions 132
+total_collisions 133
+total_collisions 134
+Package delivered  1 2
+total_collisions 135
+total_collisions 136
+total_collisions 137
+total_collisions 138
+total_collisions 139
+total_collisions 140
+total_collisions 141
+total_collisions 142
+total_collisions 143
+total_collisions 144
+Package delivered  2 2
+total_collisions 145
+total_collisions 146
+Package delivered  6 1
+Package accepted by agent  1 (3, 2) 0
+Package accepted by agent  2 (4, 2) 0
+total_collisions 147
+total_collisions 148
+total_collisions 149
+total_collisions 150
+total_collisions 151
+total_collisions 152
+total_collisions 153
+total_collisions 154
+total_collisions 155
+total_collisions 156
+total_collisions 157
+total_collisions 158
+total_collisions 159
+total_collisions 160
+Package accepted by agent  4 (7, 1) 3
+Package delivered  3 2
+total_collisions 161
+total_collisions 162
+Package accepted by agent  3 (2, 5) 0
+total_collisions 163
+total_collisions 164
+total_collisions 165
+total_collisions 166
+total_collisions 167
+total_collisions 168
+total_collisions 169
+total_collisions 170
+total_collisions 171
+total_collisions 172
+total_collisions 173
+total_collisions 174
+total_collisions 175
+total_collisions 176
+total_collisions 177
+total_collisions 178
+total_collisions 179
+total_collisions 180
+total_collisions 181
+total_collisions 182
+total_collisions 183
+total_collisions 184
+Package accepted by agent  1 (3, 5) 0
+Package delivered  4 2
+Package delivered  2 5
+Package delivered  7 1
+Package accepted by agent  3 (2, 3) 2
+Package accepted by agent  2 (4, 5) 0
+total_collisions 185
+total_collisions 186
+total_collisions 187
+total_collisions 188
+total_collisions 189
+total_collisions 190
+Package delivered  3 5
+total_collisions 191
+total_collisions 192
+Package delivered  2 3
+total_collisions 193
+total_collisions 194
+Package accepted by agent  1 (3, 3) 2
+Package accepted by agent  4 (1, 3) 0
+total_collisions 195
+total_collisions 196
+total_collisions 197
+total_collisions 198
+total_collisions 199
+total_collisions 200
+total_collisions 201
+total_collisions 202
+Package delivered  3 3
+Package delivered  1 3
+total_collisions 203
+total_collisions 204
+Package delivered  4 5
+total_collisions 205
+total_collisions 206
+total_collisions 207
+total_collisions 208
+total_collisions 209
+total_collisions 210
+total_collisions 211
+total_collisions 212
+total_collisions 213
+total_collisions 214
+Package accepted by agent  1 (5, 3) 2
+Package delivered  5 3
+Package accepted by agent  1 (8, 1) 3
+Package delivered  8 1
+6.80554318428

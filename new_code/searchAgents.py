@@ -235,8 +235,8 @@ class PositionSearchProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             x, y = int(x + dx), int(y + dy)
             if self.walls[x][y]: return 999999
-            # cost += self.state_data.routingTable.getCost(self.startState, self.goal)
-            cost += self.costFn((x,y))
+            cost += self.state_data.routingTable.getCost(self.startState, self.goal)
+            # cost += self.costFn((x,y))
         return cost
 
 class StayEastSearchAgent(SearchAgent):
