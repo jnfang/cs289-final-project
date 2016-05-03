@@ -53,13 +53,21 @@ def populatePackagesMedium(queue):
     queue.push(Package((12, 1), 1), 1)
     queue.push(Package((2, 10), 1), 1)
 
-def populatePackagesLarge(queue):
+def populatePackagesLarge1(queue):
     queue.push(Package((21, 5), 1), 1)
     queue.push(Package((13, 25), 1), 1)
     queue.push(Package((28, 5), 1), 1)
     queue.push(Package((11, 11), 1), 1)
     queue.push(Package((22, 1), 1), 1)
-    queue.push(Package((11, 13), 1), 1)
+    queue.push(Package((15, 13), 1), 1)
+
+def populatePackagesLarge1(queue):
+    queue.push(Package((1, 5), 1), 1)
+    queue.push(Package((13, 25), 1), 1)
+    queue.push(Package((8, 5), 1), 1)
+    queue.push(Package((21, 11), 1), 1)
+    queue.push(Package((22, 1), 1), 1)
+    queue.push(Package((15, 13), 1), 1)
 
 starttime = None
 class DirectedGhost(GhostAgent, SearchAgent):
