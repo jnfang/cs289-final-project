@@ -87,22 +87,55 @@ def populatePackagesSmall5(queue):
     queue.push(Package((4,5),1),1)
     queue.push(Package((1,3),1),1)
 
-def populatePackagesSmall(queue):
-    queue.push(Package((6, 5), 1), 1)
-    queue.push(Package((3, 5), 1), 1)
-    queue.push(Package((8, 5), 1), 1)
-    queue.push(Package((1, 1), 1), 1)
-    queue.push(Package((2, 1), 1), 1)
-    queue.push(Package((1, 3), 1), 1)
+def populatePackagesMedium1(queue):
+    queue.push(Package((17,17),1),1)
+    queue.push(Package((17,17),1),1)
+    queue.push(Package((1,1),1),1)
+    queue.push(Package((1,8),1),1)
+    queue.push(Package((4,9),1),1)
+    queue.push(Package((17,13),1),1)
+    queue.push(Package((17,14),1),1)
+    queue.push(Package((17,15),1),1)
 
-def populatePackagesMedium(queue):
-    # may not have checked if hit walls
-    queue.push(Package((11, 5), 1), 1)
-    queue.push(Package((3, 8), 1), 1)
-    queue.push(Package((18, 5), 1), 1)
-    queue.push(Package((18, 18), 1), 1)
-    queue.push(Package((12, 1), 1), 1)
-    queue.push(Package((2, 10), 1), 1)
+def populatePackagesMedium2(queue):
+    queue.push(Package((17,16),1),1)
+    queue.push(Package((1,13),1),1)
+    queue.push(Package((1,12),1),1)
+    queue.push(Package((8,4),1),1)
+    queue.push(Package((8,15),1),1)
+    queue.push(Package((4,5),1),1)
+    queue.push(Package((1,11),1),1)
+    queue.push(Package((1,10),1),1)
+
+def populatePackagesMedium3(queue):
+    queue.push(Package((1,9),1),1)
+    queue.push(Package((7,2),1),1)
+    queue.push(Package((7,12),1),1)
+    queue.push(Package((4,8),1),1)
+    queue.push(Package((4,9),1),1)
+    queue.push(Package((13,15),1),1)
+    queue.push(Package((1,7),1),1)
+    queue.push(Package((13,11),1),1)
+
+def populatePackagesMedium4(queue):
+    queue.push(Package((17,12),1),1)
+    queue.push(Package((8,11),1),1)
+    queue.push(Package((17,7),1),1)
+    queue.push(Package((7,3),1),1)
+    queue.push(Package((7,10),1),1)
+    queue.push(Package((8,2),1),1)
+    queue.push(Package((17,2),1),1)
+    queue.push(Package((13,9),1),1)
+
+def populatePackagesMedium5(queue):
+    queue.push(Package((13,16),1),1)
+    queue.push(Package((7,11),1),1)
+    queue.push(Package((7,13),1),1)
+    queue.push(Package((7,15),1),1)
+    queue.push(Package((8,1),1),1)
+    queue.push(Package((8,3),1),1)
+    queue.push(Package((4,6),1),1)
+    queue.push(Package((4,7),1),1)
 
 def populatePackagesLarge1(queue):
     queue.push(Package((18,37), 1), 1)
@@ -148,7 +181,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
     global starttime
     starttime = time.time() 
     queues = [util.PriorityQueue()] #, util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
-    populatePackagesSmall2(queues[0])
+    populatePackagesMedium5(queues[0])
     # populatePackagesSmall2(queues[1])
     # populatePackagesSmall3(queues[2])
     # populatePackagesSmall4(queues[3])
