@@ -3,8 +3,6 @@ import random
 def new_xy(mmin, mmax):
 	x = random.randint(mmin, mmax)
 	y = random.randint(mmin, mmax)
-	while y == x:
-		y = random.randint(mmin, mmax)
 	return (x, y)
 
 def print_coors(mmin, mmax):

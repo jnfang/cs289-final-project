@@ -54,12 +54,15 @@ def populatePackagesMedium(queue):
     queue.push(Package((2, 10), 1), 1)
 
 def populatePackagesLarge1(queue):
-    queue.push(Package((21, 5), 1), 1)
-    queue.push(Package((13, 25), 1), 1)
-    queue.push(Package((28, 5), 1), 1)
-    queue.push(Package((11, 11), 1), 1)
-    queue.push(Package((22, 1), 1), 1)
-    queue.push(Package((15, 13), 1), 1)
+    queue.push(Package((1,7), 1), 1)
+    queue.push(Package((9,29), 1), 1)
+    queue.push(Package((5,29), 1), 1)
+    queue.push(Package((12,25), 1), 1)
+    queue.push(Package((26,14), 1), 1)
+    queue.push(Package((28,19), 1), 1)
+    queue.push(Package((11,5), 1), 1)
+    queue.push(Package((22,38), 1), 1)
+
 
 def populatePackagesLarge2(queue):
     queue.push(Package((1, 5), 1), 1)
