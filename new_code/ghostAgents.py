@@ -144,6 +144,8 @@ def populatePackagesLarge1(queue):
     queue.push(Package((33,33), 1), 1)
     queue.push(Package((26,25), 1), 1)
     queue.push(Package((37,30), 1), 1)
+    queue.push(Package((3,11), 1), 1)
+    queue.push(Package((3,27), 1), 1)
 
 def populatePackagesLarge2(queue):
     queue.push(Package((33,24), 1), 1)
@@ -174,6 +176,16 @@ def populatePackagesLarge4(queue):
     queue.push(Package((35,25), 1), 1)
     queue.push(Package((7,7), 1), 1)
     queue.push(Package((17,35), 1), 1)
+
+def populatePackagesLarge5(queue):
+    queue.push(Package((7,14), 1), 1)
+    queue.push(Package((32,30), 1), 1)
+    queue.push(Package((23,30), 1), 1)
+    queue.push(Package((19,20), 1), 1)
+    queue.push(Package((27,5), 1), 1)
+    queue.push(Package((38,33), 1), 1)
+    queue.push(Package((5,32), 1), 1)
+    queue.push(Package((1,29), 1), 1)
 
 
 starttime = None
