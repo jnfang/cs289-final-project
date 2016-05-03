@@ -61,7 +61,7 @@ def populatePackagesLarge1(queue):
     queue.push(Package((22, 1), 1), 1)
     queue.push(Package((15, 13), 1), 1)
 
-def populatePackagesLarge1(queue):
+def populatePackagesLarge2(queue):
     queue.push(Package((1, 5), 1), 1)
     queue.push(Package((13, 25), 1), 1)
     queue.push(Package((8, 5), 1), 1)
