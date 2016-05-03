@@ -52,6 +52,7 @@ class GoWestAgent(Agent):
 #       after you fill in parts of search.py          #
 #######################################################
 
+max_nodes = 0
 
 class SearchAgent(Agent):
     """
@@ -96,6 +97,7 @@ class SearchAgent(Agent):
         self.max_nodes = 0
 
     def registerInitialState(self, state):
+        global max_nodes
         """
         This is the first time that the agent sees the layout of the game board. Here, we
         choose a path to the goal.  In this phase, the agent should compute the path to the
@@ -121,9 +123,9 @@ class SearchAgent(Agent):
         # WRITE problem._expanded to file
         # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
         if '_expanded' in dir(problem):
-            if problem._expanded > self.max_nodes:
-                self.max_nodes = problem._expanded
-                print('New max nodes expanded: %d' % self.max_nodes)
+            if problem._expanded > max_nodes:
+                max_nodes = problem._expanded
+                print('New max nodes expanded: %d by agent %d' % (max_nodes, self.index))
 
     def getAction(self, state):
         """

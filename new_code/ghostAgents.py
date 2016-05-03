@@ -192,11 +192,16 @@ starttime = None
 class DirectedGhost(GhostAgent, SearchAgent):
     global starttime
     starttime = time.time() 
-    queues = [util.PriorityQueue()] #, util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
-    populatePackagesMedium1(queues[0])
-    # populatePackagesSmall2(queues[1])
-    # populatePackagesSmall3(queues[2])
-    # populatePackagesSmall4(queues[3])
+    # queues = [util.PriorityQueue()]
+    # queues = [util.PriorityQueue(), util.PriorityQueue()]
+    # queues = [util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
+    queues = [util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
+    # queues = [util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
+    populatePackagesLarge1(queues[0])
+    populatePackagesLarge2(queues[1])
+    populatePackagesLarge3(queues[2])
+    populatePackagesLarge4(queues[3])
+    populatePackagesLarge5(queues[0])
 
 
     def __init__(self, index):
@@ -294,7 +299,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 go_to = min_source
                 if go_to == None:
                     go_to = keep_source
-                    pr = True 
+                    pr = True
                 self.setPackage(go_to, pr, 0)
             else:
                 self.acceptPackage(state)
