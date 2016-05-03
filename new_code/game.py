@@ -620,7 +620,6 @@ class Game:
                 self.mute(i)
                 if self.catchExceptions:
                     try:
-                        print "wtf is this"
                         timed_func = TimeoutFunction(agent.registerInitialState, int(self.rules.getMaxStartupTime(i)))
                         try:
                             start_time = time.time()

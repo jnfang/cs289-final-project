@@ -20,6 +20,7 @@ from game import Package
 import random
 from util import manhattanDistance
 import util
+import time
 
 class GhostAgent( Agent ):
     def __init__( self, index ):
@@ -60,7 +61,10 @@ def populatePackagesLarge(queue):
     queue.push(Package((22, 1), 1), 1)
     queue.push(Package((11, 13), 1), 1)
 
+starttime = None
 class DirectedGhost(GhostAgent, SearchAgent):
+    global starttime
+    starttime = time.time() 
     queues = [util.PriorityQueue(), util.PriorityQueue()]
     populatePackagesMedium(queues[0])
     populatePackagesMedium(queues[1])
@@ -90,6 +94,10 @@ class DirectedGhost(GhostAgent, SearchAgent):
         return dist
 
     def setPackage(self, destination, priority):
+        global starttime
+        if destination == None:
+            print (time.time() - starttime)
+
         self.package = Package(destination, priority)
 
     def getDestination(self):
@@ -99,7 +107,6 @@ class DirectedGhost(GhostAgent, SearchAgent):
         return self.package.getPriority()
 
     def acceptPackage(self, state, queue=None): 
-
         ghostState = state.data.agentStates[self.index]
         x,y = ghostState.configuration.pos
         
@@ -116,12 +123,13 @@ class DirectedGhost(GhostAgent, SearchAgent):
         if not queue.isEmpty():
             next_package = queue.pop()
             self.setPackage(next_package.getDestination(), next_package.getPriority())
-            print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
+            # print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
 
     def checkDelivery(self, state):
         ghostState = state.data.agentStates[self.index]
         x,y = ghostState.configuration.pos
         x, y = int(x), int(y)
+
         # complete delivery
         if self.package != None and (x, y) == self.getDestination():
             if self.package.getPriority() != 0:
@@ -130,11 +138,16 @@ class DirectedGhost(GhostAgent, SearchAgent):
                 state.data._foodEaten = x, y
                 # Go back to a source
                 ghostState.scaredTimer = 40
-                print "Package delivered ", x, y
+                # print "Package delivered ", x, y
 
                 # go to closest source using manhattan distance 
                 min_dist = 9999999
                 min_source = None
+
+                # print len(state.data.sources)
+                    # print "HELLOOOO"
+                    # print (time.time() - starttime)
+                    # return
                 for source in state.data.sources:
                     source_idx = state.data.sources.index(source)
                     queue = DirectedGhost.queues[source_idx]
