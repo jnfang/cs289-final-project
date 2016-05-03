@@ -107,7 +107,7 @@ class SearchAgent(Agent):
         try:
             problem.goal = self.package.getDestination() 
         except AttributeError:
-            self.acceptPackage()
+            self.acceptPackage(state)
             problem.goal = self.package.getDestination()
             pass
         state.data.agentStates[self.index].setPackage(self.package)
