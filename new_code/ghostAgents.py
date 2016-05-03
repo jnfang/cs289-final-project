@@ -210,9 +210,9 @@ class DirectedGhost(GhostAgent, SearchAgent):
         dist.normalize()
         return dist
 
-    def setPackage(self, destination, priority):
+    def setPackage(self, destination, pr, priority):
         global starttime
-        if destination == None:
+        if pr == True:
             print (time.time() - starttime)
 
         self.package = Package(destination, priority)
@@ -239,7 +239,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
         queue = DirectedGhost.queues[source_idx] # 289TODO: multiple queue support
         if not queue.isEmpty():
             next_package = queue.pop()
-            self.setPackage(next_package.getDestination(), next_package.getPriority())
+            self.setPackage(next_package.getDestination(), False, next_package.getPriority())
             print "Package accepted by agent ", self.index, next_package.getDestination(), source_idx
 
     def checkDelivery(self, state):
@@ -278,10 +278,12 @@ class DirectedGhost(GhostAgent, SearchAgent):
                         min_dist = util.manhattanDistance(source, ghostState.configuration.pos)
                         min_source = source
 
+                pr = False
                 go_to = min_source
                 if go_to == None:
                     go_to = keep_source
-                self.setPackage(go_to, 0)
+                    pr = True 
+                self.setPackage(go_to, pr, 0)
             else:
                 self.acceptPackage(state)
     
