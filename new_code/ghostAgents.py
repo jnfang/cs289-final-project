@@ -193,7 +193,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
     global starttime
     starttime = time.time() 
     queues = [util.PriorityQueue()] #, util.PriorityQueue(), util.PriorityQueue(), util.PriorityQueue()]
-    populatePackagesMedium5(queues[0])
+    populatePackagesMedium1(queues[0])
     # populatePackagesSmall2(queues[1])
     # populatePackagesSmall3(queues[2])
     # populatePackagesSmall4(queues[3])
@@ -202,7 +202,7 @@ class DirectedGhost(GhostAgent, SearchAgent):
     def __init__(self, index):
         self.index = index
         GhostAgent.__init__(self, self.index)
-        SearchAgent.__init__(self, fn='uniformCostSearch') 
+        SearchAgent.__init__(self, fn='breadthFirstSearch') 
         self.package = None # tuple of priority and destination (from priority queue)
         self.origin = None
 

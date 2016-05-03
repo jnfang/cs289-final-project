@@ -52,6 +52,7 @@ class GoWestAgent(Agent):
 #       after you fill in parts of search.py          #
 #######################################################
 
+
 class SearchAgent(Agent):
     """
     This very general search agent finds a path using a supplied search algorithm for a
@@ -92,6 +93,7 @@ class SearchAgent(Agent):
             raise AttributeError, prob + ' is not a search problem type in SearchAgents.py.'
         self.searchType = getattr(searchAgents, prob)
         print('[SearchAgent] using problem type ' + prob)
+        self.max_nodes = 0
 
     def registerInitialState(self, state):
         """
@@ -118,6 +120,10 @@ class SearchAgent(Agent):
         # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
         # WRITE problem._expanded to file
         # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
+        if '_expanded' in dir(problem):
+            if problem._expanded > self.max_nodes:
+                self.max_nodes = problem._expanded
+                print('New max nodes expanded: %d' % self.max_nodes)
 
     def getAction(self, state):
         """
@@ -227,8 +233,8 @@ class PositionSearchProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             x, y = int(x + dx), int(y + dy)
             if self.walls[x][y]: return 999999
-            cost += self.state_data.routingTable.getCost(self.startState, self.goal)
-            # cost += self.costFn((x,y))
+            # cost += self.state_data.routingTable.getCost(self.startState, self.goal)
+            cost += self.costFn((x,y))
         return cost
 
 class StayEastSearchAgent(SearchAgent):
