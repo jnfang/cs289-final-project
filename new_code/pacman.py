@@ -394,6 +394,7 @@ class PacmanRules:
                 state.data.agentStates[index].scaredTimer = SCARED_TIME
     consume = staticmethod( consume )
 
+total_collisions = 0
 class GhostRules:
     """
     These functions dictate how ghosts interact with their environment.
@@ -448,7 +449,7 @@ class GhostRules:
     checkCollision = staticmethod( checkCollision )
 
     def collide(state):
-        global global_walls, changed_lay, idx_changed
+        global global_walls, changed_lay, idx_changed, total_collisions
 
         global_walls = state.data.layout.walls
 
@@ -476,6 +477,8 @@ class GhostRules:
                         pass
                     elif GhostRules.canKill(firstG_pos, secondG_pos):
                         # print "gonna collide"
+                        total_collisions += 1
+                        print "total_collisions", total_collisions
                         state.data.routingTable.table[(firstG_pos, secondG_pos)] += 1.25
 
                         changed_lay = True
@@ -486,6 +489,7 @@ class GhostRules:
                         # if coord1 and coord2 not in idx_changed:
                         idx_changed.append(coord1)
                         idx_changed.append(coord2)
+
     collide = staticmethod( collide )
 
     def canKill( pacmanPosition, ghostPosition ):
