@@ -38,6 +38,7 @@ class GhostAgent( Agent ):
         util.raiseNotDefined()
 
 def populatePackagesSmall(queue):
+    # may not have checked if hit walls
     queue.push(Package((6, 5), 1), 1)
     queue.push(Package((3, 5), 1), 1)
     queue.push(Package((8, 5), 1), 1)
@@ -46,6 +47,7 @@ def populatePackagesSmall(queue):
     queue.push(Package((1, 3), 1), 1)
 
 def populatePackagesMedium(queue):
+    # may not have checked if hit walls
     queue.push(Package((11, 5), 1), 1)
     queue.push(Package((3, 8), 1), 1)
     queue.push(Package((18, 5), 1), 1)
@@ -54,23 +56,43 @@ def populatePackagesMedium(queue):
     queue.push(Package((2, 10), 1), 1)
 
 def populatePackagesLarge1(queue):
-    queue.push(Package((1,7), 1), 1)
-    queue.push(Package((9,29), 1), 1)
-    queue.push(Package((5,29), 1), 1)
-    queue.push(Package((12,25), 1), 1)
-    queue.push(Package((26,14), 1), 1)
-    queue.push(Package((28,19), 1), 1)
-    queue.push(Package((11,5), 1), 1)
-    queue.push(Package((22,38), 1), 1)
-
+    queue.push(Package((18,37), 1), 1)
+    queue.push(Package((16,14), 1), 1)
+    queue.push(Package((32,29), 1), 1)
+    queue.push(Package((33,33), 1), 1)
+    queue.push(Package((26,25), 1), 1)
+    queue.push(Package((37,30), 1), 1)
 
 def populatePackagesLarge2(queue):
-    queue.push(Package((1, 5), 1), 1)
-    queue.push(Package((13, 25), 1), 1)
-    queue.push(Package((8, 5), 1), 1)
-    queue.push(Package((21, 11), 1), 1)
-    queue.push(Package((22, 1), 1), 1)
-    queue.push(Package((15, 13), 1), 1)
+    queue.push(Package((33,24), 1), 1)
+    queue.push(Package((12,19), 1), 1)
+    queue.push(Package((21,26), 1), 1)
+    queue.push(Package((4,10), 1), 1)
+    queue.push(Package((34,26), 1), 1)
+    queue.push(Package((3,11), 1), 1)
+    queue.push(Package((29,13), 1), 1)
+    queue.push(Package((14,31), 1), 1)
+
+def populatePackagesLarge3(queue):
+    queue.push(Package((21,16), 1), 1)
+    queue.push(Package((14,26), 1), 1)
+    queue.push(Package((7,25), 1), 1)
+    queue.push(Package((2,13), 1), 1)
+    queue.push(Package((19,8), 1), 1)
+    queue.push(Package((3,27), 1), 1)
+    queue.push(Package((35,26), 1), 1)
+    queue.push(Package((8,25), 1), 1)
+
+def populatePackagesLarge4(queue):
+    queue.push(Package((21,36), 1), 1)
+    queue.push(Package((31,29), 1), 1)
+    queue.push(Package((15,19), 1), 1)
+    queue.push(Package((36,15), 1), 1)
+    queue.push(Package((14,27), 1), 1)
+    queue.push(Package((35,25), 1), 1)
+    queue.push(Package((7,7), 1), 1)
+    queue.push(Package((17,35), 1), 1)
+
 
 starttime = None
 class DirectedGhost(GhostAgent, SearchAgent):
