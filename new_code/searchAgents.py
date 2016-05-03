@@ -115,8 +115,8 @@ class SearchAgent(Agent):
 
         self.actions  = self.searchFunction(problem) # Find a path
         totalCost = problem.getCostOfActions(self.actions)
-        # print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
-        # if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
+        print('Path found with total cost of %d in %.1f seconds' % (totalCost, time.time() - starttime))
+        if '_expanded' in dir(problem): print('Search nodes expanded: %d' % problem._expanded)
 
     def getAction(self, state):
         """
@@ -203,10 +203,7 @@ class PositionSearchProblem(search.SearchProblem):
                 nextState = (nextx, nexty)
                 cost = self.costFn(nextState)
                 successors.append((nextState, action, cost))
-            # elif self.walls[5][4]:
-            #     print "HRERE"
             
-
         # Bookkeeping for display purposes
         self._expanded += 1
         if state not in self._visited:
