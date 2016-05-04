@@ -1,0 +1,87 @@
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (18, 2) 0
+New max nodes expanded: 217 by agent 1
+Package accepted by agent  2 (6, 17) 2
+Package accepted by agent  3 (6, 17) 2
+Package accepted by agent  4 (5, 10) 1
+Package delivered  6 17
+total_collisions 1
+total_collisions 2
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+total_collisions 9
+total_collisions 10
+total_collisions 11
+total_collisions 12
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+Package delivered  6 17
+Package accepted by agent  2 (6, 17) 2
+Package delivered  5 10
+Package accepted by agent  3 (6, 17) 2
+Package delivered  18 2
+Package delivered  6 17
+total_collisions 17
+total_collisions 18
+total_collisions 19
+total_collisions 20
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+total_collisions 25
+total_collisions 26
+total_collisions 27
+total_collisions 28
+total_collisions 29
+total_collisions 30
+total_collisions 31
+total_collisions 32
+Package delivered  6 17
+Package accepted by agent  4 (18, 2) 0
+Package accepted by agent  1 (18, 2) 0
+Package accepted by agent  2 (18, 2) 0
+Package delivered  18 2
+Package delivered  18 2
+Package delivered  18 2
+Package accepted by agent  4 (5, 10) 1
+Package accepted by agent  1 (5, 10) 1
+Package delivered  5 10
+Package accepted by agent  2 (5, 10) 1
+total_collisions 33
+total_collisions 34
+total_collisions 35
+total_collisions 36
+total_collisions 37
+total_collisions 38
+total_collisions 39
+total_collisions 40
+total_collisions 41
+total_collisions 42
+total_collisions 43
+total_collisions 44
+total_collisions 45
+total_collisions 46
+total_collisions 47
+total_collisions 48
+total_collisions 49
+total_collisions 50
+total_collisions 51
+total_collisions 52
+Package delivered  5 10
+6.5175909996
+Package delivered  5 10
+6.90135407448

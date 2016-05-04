@@ -1,0 +1,101 @@
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (10, 4) 1
+New max nodes expanded: 215 by agent 1
+Package accepted by agent  2 (10, 4) 1
+Package accepted by agent  3 (12, 17) 2
+Package accepted by agent  4 (12, 17) 2
+total_collisions 1
+total_collisions 2
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+total_collisions 9
+total_collisions 10
+total_collisions 11
+total_collisions 12
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+total_collisions 17
+total_collisions 18
+Package delivered  12 17
+total_collisions 19
+total_collisions 20
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+total_collisions 25
+total_collisions 26
+total_collisions 27
+total_collisions 28
+total_collisions 29
+total_collisions 30
+Package accepted by agent  3 (18, 9) 3
+Package delivered  12 17
+total_collisions 31
+total_collisions 32
+total_collisions 33
+total_collisions 34
+Package delivered  10 4
+total_collisions 35
+total_collisions 36
+total_collisions 37
+total_collisions 38
+Package accepted by agent  4 (18, 9) 3
+total_collisions 39
+total_collisions 40
+total_collisions 41
+total_collisions 42
+New max nodes expanded: 323 by agent 1
+total_collisions 43
+total_collisions 44
+total_collisions 45
+total_collisions 46
+Package delivered  10 4
+Package accepted by agent  2 (18, 2) 0
+Package accepted by agent  1 (18, 2) 0
+Package delivered  18 9
+total_collisions 47
+total_collisions 48
+total_collisions 49
+total_collisions 50
+total_collisions 51
+total_collisions 52
+total_collisions 53
+total_collisions 54
+total_collisions 55
+total_collisions 56
+total_collisions 57
+total_collisions 58
+total_collisions 59
+total_collisions 60
+total_collisions 61
+total_collisions 62
+Package delivered  18 9
+Package accepted by agent  3 (12, 17) 2
+Package delivered  18 2
+total_collisions 63
+total_collisions 64
+total_collisions 65
+total_collisions 66
+Package delivered  18 2
+Package delivered  12 17
+Package accepted by agent  3 (18, 9) 3
+Package accepted by agent  2 (18, 2) 0
+Package delivered  18 9
+Package delivered  18 2
+Package accepted by agent  3 (10, 4) 1
+Package delivered  10 4
+11.9813990593

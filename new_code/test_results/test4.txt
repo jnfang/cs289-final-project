@@ -185,6 +185,6 @@ total_collisions 98
 Package accepted by agent  3 (1, 7) 2
 Package accepted by agent  1 (13, 11) 2
 Package delivered  13 11
-20.8998980522
+13.4186348915
 Package delivered  1 7
-21.4542729855
+14.0004248619

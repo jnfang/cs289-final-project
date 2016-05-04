@@ -519,13 +519,13 @@ total_collisions 432
 Package accepted by agent  1 (1, 11) 1
 Package accepted by agent  4 (1, 10) 1
 Package delivered  1 11
-30.3306150436
+17.5033688545
 total_collisions 433
 total_collisions 434
 total_collisions 435
 total_collisions 436
 Package delivered  1 10
-30.4214351177
+17.5970020294
 total_collisions 437
 total_collisions 438
 total_collisions 439

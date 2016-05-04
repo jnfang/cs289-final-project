@@ -1,0 +1,65 @@
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (4, 8) 0
+New max nodes expanded: 82 by agent 1
+Package accepted by agent  2 (6, 17) 1
+Package accepted by agent  3 (11, 7) 0
+Package accepted by agent  4 (12, 18) 1
+Package delivered  6 17
+Package delivered  11 7
+Package delivered  12 18
+Package delivered  4 8
+New max nodes expanded: 114 by agent 1
+Package accepted by agent  2 (6, 17) 1
+Package accepted by agent  3 (4, 8) 0
+Package accepted by agent  4 (12, 18) 1
+Package accepted by agent  1 (11, 7) 0
+Package delivered  6 17
+Package delivered  12 18
+Package delivered  4 8
+Package accepted by agent  2 (6, 17) 1
+Package delivered  11 7
+Package accepted by agent  4 (12, 18) 1
+Package delivered  6 17
+New max nodes expanded: 198 by agent 2
+Package accepted by agent  1 (4, 8) 0
+Package accepted by agent  3 (11, 7) 0
+total_collisions 1
+total_collisions 2
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
+total_collisions 7
+total_collisions 8
+total_collisions 9
+total_collisions 10
+Package delivered  12 18
+5.1533780098
+New max nodes expanded: 244 by agent 4
+total_collisions 11
+total_collisions 12
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+total_collisions 17
+total_collisions 18
+total_collisions 19
+total_collisions 20
+Package delivered  11 7
+5.46435117722
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+total_collisions 25
+total_collisions 26
+Package delivered  4 8
+5.5962460041

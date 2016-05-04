@@ -1,0 +1,13 @@
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+[SearchAgent] using function uniformCostSearch
+[SearchAgent] using problem type PositionSearchProblem
+Package accepted by agent  1 (12, 17) 2
+New max nodes expanded: 132 by agent 1
+Package accepted by agent  2 (12, 17) 2
+New max nodes expanded: 170 by agent 2
+Package accepted by agent  3 (12, 17) 2

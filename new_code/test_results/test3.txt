@@ -11,6 +11,8 @@ New max nodes expanded: 319 by agent 1
 Package accepted by agent  2 (1, 9) 2
 Package accepted by agent  3 (7, 2) 2
 Package accepted by agent  4 (17, 16) 1
+total_collisions 1
+total_collisions 2
 Package delivered  17 16
 Package delivered  1 9
 Package delivered  7 2
@@ -18,6 +20,10 @@ Package accepted by agent  4 (1, 13) 1
 Package accepted by agent  3 (17, 17) 0
 Package delivered  17 17
 Package accepted by agent  2 (1, 1) 0
+total_collisions 3
+total_collisions 4
+total_collisions 5
+total_collisions 6
 Package accepted by agent  1 (1, 12) 1
 Package delivered  1 13
 Package delivered  1 1
@@ -43,6 +49,8 @@ Package delivered  17 13
 Package accepted by agent  2 (8, 15) 1
 Package delivered  17 14
 Package delivered  17 15
+total_collisions 7
+total_collisions 8
 Package delivered  13 16
 Package accepted by agent  4 (4, 5) 1
 Package delivered  8 15
@@ -59,18 +67,72 @@ Package delivered  13 11
 Package accepted by agent  2 (1, 10) 1
 Package delivered  7 11
 Package accepted by agent  3 (7, 13) 0
+total_collisions 9
+total_collisions 10
+total_collisions 11
+total_collisions 12
+total_collisions 13
+total_collisions 14
+total_collisions 15
+total_collisions 16
+total_collisions 17
+total_collisions 18
 Package accepted by agent  1 (7, 15) 0
+total_collisions 19
+total_collisions 20
+total_collisions 21
+total_collisions 22
+total_collisions 23
+total_collisions 24
+total_collisions 25
+total_collisions 26
 Package accepted by agent  4 (8, 1) 0
 Package delivered  1 10
 Package delivered  7 13
+total_collisions 27
+total_collisions 28
 Package delivered  8 1
+total_collisions 29
+total_collisions 30
+total_collisions 31
+total_collisions 32
 Package accepted by agent  4 (8, 3) 0
 Package delivered  7 15
 Package delivered  8 3
 Package accepted by agent  4 (4, 6) 0
+total_collisions 33
+total_collisions 34
 Package accepted by agent  3 (4, 7) 0
+total_collisions 35
+total_collisions 36
+total_collisions 37
+total_collisions 38
+total_collisions 39
+total_collisions 40
+total_collisions 41
+total_collisions 42
+total_collisions 43
+total_collisions 44
+total_collisions 45
+total_collisions 46
+total_collisions 47
+total_collisions 48
+total_collisions 49
+total_collisions 50
 Package delivered  4 6
+total_collisions 51
+total_collisions 52
+total_collisions 53
+total_collisions 54
+total_collisions 55
+total_collisions 56
+total_collisions 57
+total_collisions 58
 New max nodes expanded: 323 by agent 3
+total_collisions 59
+total_collisions 60
+total_collisions 61
+total_collisions 62
 Package delivered  4 7
 Package accepted by agent  4 (17, 12) 1
 Package accepted by agent  3 (8, 11) 1
@@ -88,4 +150,4 @@ Package delivered  8 2
 Package delivered  17 2
 Package accepted by agent  4 (13, 9) 1
 Package delivered  13 9
-60.9356389046
+19.9535892
